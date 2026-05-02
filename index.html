@@ -6,14 +6,8 @@
 <title>AstroCode Studio</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
 <style>
-
-/* VARIABLES */
-:root {
-  --gradient: linear-gradient(90deg, #00d4ff, #5b8cff, #8a2be2);
-}
 
 /* RESET */
 * { margin:0; padding:0; box-sizing:border-box; }
@@ -25,127 +19,53 @@ body {
   overflow-x:hidden;
 }
 
-/* ========================= */
-/* 🚀 LOADER CINEMÁTICO PRO */
-/* ========================= */
+/* ================= LOADER ================= */
 
 #spacex-loader {
   position: fixed;
-  width: 100%;
-  height: 100vh;
-  background: radial-gradient(circle at center, #02040a 0%, #000 80%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  perspective: 1200px;
-  overflow: hidden;
-}
-
-/* GLOW SUAVE */
-#spacex-loader::before {
-  content: "";
-  position: absolute;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(0,212,255,0.12), transparent 70%);
-  filter: blur(100px);
-}
-
-/* CONTENEDOR 3D */
-.logo-3d {
-  transform-style: preserve-3d;
-}
-
-/* LOGO */
-.logo-3d img {
-  width: 260px;
-  opacity: 0;
-  transform: translateZ(-800px) scale(0.4) rotateX(20deg);
-  filter: blur(12px);
-  animation: logoDeepSpace 4.5s cubic-bezier(.19,1,.22,1) forwards;
-}
-
-/* ANIMACIÓN */
-@keyframes logoDeepSpace {
-
-  0% {
-    opacity: 0;
-    transform: translateZ(-1000px) scale(0.3) rotateX(25deg);
-    filter: blur(20px);
-  }
-
-  40% {
-    opacity: 1;
-    transform: translateZ(100px) scale(1.1) rotateX(5deg);
-    filter: blur(0);
-  }
-
-  60% {
-    transform: translateZ(0px) scale(0.98);
-  }
-
-  75% {
-    transform: translateZ(0px) scale(1.02);
-  }
-
-  100% {
-    transform: translateZ(0px) scale(1);
-    filter: drop-shadow(0 0 40px #00d4ff);
-  }
-}
-
-/* SALIDA */
-#spacex-loader.fade-out {
-  animation: fadeOut 1.2s ease forwards;
-}
-
-@keyframes fadeOut {
-  to {
-    opacity: 0;
-    visibility: hidden;
-  }
-}
-
-/* ========================= */
-/* 🌌 FONDO LIMPIO */
-/* ========================= */
-
-body::before {
-  content: "";
-  position: fixed;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(91,140,255,0.15), transparent 70%);
-  top: -100px;
-  right: -100px;
-  filter: blur(100px);
-  z-index: -1;
-}
-
-/* NAVBAR */
-header {
+  width:100%;
+  height:100vh;
+  background:#000;
   display:flex;
-  justify-content:space-between;
-  padding:20px 50px;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+  perspective:1200px;
+}
+
+.logo-3d img {
+  width:260px;
+  opacity:0;
+  transform: translateZ(-800px) scale(0.4);
+  animation: intro 4.5s forwards;
+}
+
+@keyframes intro {
+  0% { opacity:0; transform:translateZ(-1000px) scale(0.3); filter:blur(20px); }
+  40% { opacity:1; transform:translateZ(100px) scale(1.1); filter:blur(0); }
+  100% { transform:scale(1); filter:drop-shadow(0 0 40px #00d4ff); }
+}
+
+#spacex-loader.fade-out {
+  animation: fadeOut 1s forwards;
+}
+@keyframes fadeOut { to { opacity:0; visibility:hidden; } }
+
+/* NAV */
+header {
   position:fixed;
   width:100%;
+  padding:20px 50px;
+  display:flex;
+  justify-content:space-between;
   z-index:1000;
-  transition:0.3s;
-}
-
-header.scrolled {
-  background:rgba(10,15,30,0.85);
-  backdrop-filter:blur(10px);
 }
 
 nav a {
+  margin-left:20px;
   color:#ccc;
-  margin-left:25px;
   text-decoration:none;
 }
-
-nav a:hover { color:#fff; }
 
 /* HERO */
 .hero {
@@ -157,100 +77,69 @@ nav a:hover { color:#fff; }
   text-align:center;
 }
 
-.hero img {
-  width:280px;
-  margin-bottom:20px;
-}
+.hero img { width:260px; }
 
 .hero h1 {
   font-family:'Orbitron';
   font-size:3rem;
-  background:var(--gradient);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
 }
 
-/* BOTÓN */
+/* TEXTO IA */
+#dynamic-text {
+  margin-top:10px;
+  color:#00d4ff;
+}
+
+/* BOTON */
 .btn {
   margin-top:20px;
-  padding:12px 30px;
+  padding:14px 35px;
   border-radius:40px;
-  background:var(--gradient);
-  color:#000;
+  background:linear-gradient(90deg,#00d4ff,#5b8cff,#8a2be2);
   border:none;
   cursor:pointer;
 }
 
-/* SECCIONES */
-section {
-  padding:100px 20px;
-  max-width:1100px;
-  margin:auto;
-}
-
-h2 {
-  text-align:center;
-  margin-bottom:40px;
-  font-family:'Orbitron';
-}
-
-/* GRID */
-.grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:25px;
-}
-
-/* CARDS */
-.card {
-  background:#12172b;
-  padding:30px;
-  border-radius:20px;
-  text-align:center;
-  transition:0.3s;
-}
-
-.card:hover {
-  transform:translateY(-10px);
-}
-
-.card i {
-  font-size:30px;
-  margin-bottom:10px;
-  background:var(--gradient);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-
-/* TESTIMONIOS */
-.testimonial {
-  background:#12172b;
-  padding:25px;
-  border-radius:20px;
-}
-
-/* FORM */
-form {
+/* BIENVENIDA */
+.welcome {
+  height:100vh;
   display:flex;
   flex-direction:column;
-  gap:15px;
-  max-width:500px;
-  margin:auto;
-}
-
-input, textarea {
-  padding:12px;
-  border-radius:10px;
-  border:none;
-  background:#1a1f3c;
-  color:#fff;
-}
-
-/* FOOTER */
-footer {
+  justify-content:center;
+  align-items:center;
   text-align:center;
-  padding:30px;
-  color:#777;
+  background: radial-gradient(circle,#111,#000);
+  transform:translateY(100px);
+  opacity:0;
+  transition:1s;
+}
+
+.welcome.show {
+  transform:translateY(0);
+  opacity:1;
+}
+
+/* PARTICULAS */
+.particle {
+  position:fixed;
+  width:6px;
+  height:6px;
+  background:#00d4ff;
+  border-radius:50%;
+  pointer-events:none;
+  animation: particleMove 1s forwards;
+}
+
+@keyframes particleMove {
+  to {
+    transform:translate(var(--x), var(--y));
+    opacity:0;
+  }
+}
+
+/* PARALLAX */
+.parallax {
+  transition: transform 0.2s;
 }
 
 </style>
@@ -258,80 +147,91 @@ footer {
 
 <body>
 
-<!-- 🚀 INTRO -->
+<!-- LOADER -->
 <div id="spacex-loader">
   <div class="logo-3d">
-    <img src="logo.png" alt="AstroCode">
+    <img src="logo.png">
   </div>
 </div>
 
-<header id="navbar">
+<header>
   <div>AstroCode</div>
   <nav>
     <a href="#">Inicio</a>
-    <a href="#servicios">Servicios</a>
-    <a href="#portafolio">Portafolio</a>
-    <a href="#testimonios">Testimonios</a>
-    <a href="#contacto">Contacto</a>
+    <a href="#bienvenida">Bienvenida</a>
   </nav>
 </header>
 
-<section class="hero">
+<section class="hero parallax">
   <img src="logo.png">
   <h1>Desarrollamos ideas digitales</h1>
-  <button class="btn">Contáctanos</button>
+  <p id="dynamic-text"></p>
+  <button class="btn" onclick="goToWelcome(event)">Bienvenidos</button>
 </section>
 
-<section id="servicios">
-  <h2>Servicios</h2>
-  <div class="grid">
-    <div class="card"><i class="fas fa-code"></i><h3>Desarrollo Web</h3></div>
-    <div class="card"><i class="fas fa-laptop"></i><h3>UI/UX</h3></div>
-    <div class="card"><i class="fas fa-database"></i><h3>Backend</h3></div>
-  </div>
+<section id="bienvenida" class="welcome">
+  <h2>Bienvenido a AstroCode</h2>
+  <p>Impulsamos negocios con tecnología moderna.</p>
 </section>
-
-<section id="portafolio">
-  <h2>Portafolio</h2>
-  <div class="grid">
-    <img src="https://via.placeholder.com/400">
-    <img src="https://via.placeholder.com/400">
-  </div>
-</section>
-
-<section id="testimonios">
-  <h2>Testimonios</h2>
-  <div class="grid">
-    <div class="testimonial"><p>Excelente trabajo.</p></div>
-    <div class="testimonial"><p>Muy profesionales.</p></div>
-  </div>
-</section>
-
-<section id="contacto">
-  <h2>Contacto</h2>
-  <form>
-    <input type="text" placeholder="Nombre">
-    <input type="email" placeholder="Correo">
-    <textarea placeholder="Mensaje"></textarea>
-    <button class="btn">Enviar</button>
-  </form>
-</section>
-
-<footer>
-© 2026 AstroCode Studio
-</footer>
 
 <script>
-window.addEventListener("load", () => {
-  setTimeout(() => {
+
+/* LOADER */
+window.addEventListener("load", ()=>{
+  setTimeout(()=>{
     document.getElementById("spacex-loader").classList.add("fade-out");
-  }, 4800);
+  },4500);
 });
 
-/* NAVBAR SCROLL */
-window.addEventListener("scroll", () => {
-  document.getElementById("navbar").classList.toggle("scrolled", window.scrollY > 50);
+/* TEXTO IA */
+const phrases = [
+  "Creamos experiencias digitales",
+  "Impulsamos tu negocio",
+  "Tecnología que transforma",
+  "Diseño que conecta"
+];
+
+let i = 0;
+setInterval(()=>{
+  document.getElementById("dynamic-text").textContent = phrases[i];
+  i = (i + 1) % phrases.length;
+},2000);
+
+/* PARTICULAS CLICK */
+function goToWelcome(e){
+
+  for(let i=0;i<20;i++){
+    let p = document.createElement("div");
+    p.className = "particle";
+
+    p.style.left = e.clientX + "px";
+    p.style.top = e.clientY + "px";
+
+    p.style.setProperty('--x',(Math.random()*200-100)+"px");
+    p.style.setProperty('--y',(Math.random()*200-100)+"px");
+
+    document.body.appendChild(p);
+
+    setTimeout(()=>p.remove(),1000);
+  }
+
+  document.getElementById("bienvenida").scrollIntoView({behavior:"smooth"});
+
+  setTimeout(()=>{
+    document.querySelector(".welcome").classList.add("show");
+  },500);
+}
+
+/* PARALLAX */
+document.addEventListener("mousemove", e=>{
+  let x = (e.clientX / window.innerWidth - 0.5) * 20;
+  let y = (e.clientY / window.innerHeight - 0.5) * 20;
+
+  document.querySelectorAll(".parallax").forEach(el=>{
+    el.style.transform = `translate(${x}px, ${y}px)`;
+  });
 });
+
 </script>
 
 </body>
