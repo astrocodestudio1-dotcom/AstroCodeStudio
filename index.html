@@ -19,11 +19,20 @@ body{
 
 /* LOADER */
 #loader{
-  position:fixed;width:100%;height:100vh;
-  background:#000;display:flex;justify-content:center;align-items:center;
+  position:fixed;
+  width:100%;
+  height:100vh;
+  background:#000;
+  display:flex;
+  justify-content:center;
+  align-items:center;
   z-index:9999;
+  transition:opacity 1s;
 }
-#loader img{width:220px;animation:intro 4s forwards;}
+#loader img{
+  width:220px;
+  animation:intro 4s forwards;
+}
 @keyframes intro{
   0%{opacity:0;transform:scale(.6);filter:blur(20px);}
   60%{opacity:1;transform:scale(1.1);}
@@ -32,55 +41,109 @@ body{
 
 /* ESTRELLAS */
 #stars{
-  position:fixed;width:100%;height:100%;
-  z-index:-1;opacity:0;transition:2s;
+  position:fixed;
+  width:100%;
+  height:100%;
+  z-index:-1;
+  opacity:0;
+  transition:2s;
 }
 
 /* HEADER */
 header{
-  position:fixed;width:100%;padding:18px 50px;
-  display:flex;justify-content:space-between;align-items:center;
+  position:fixed;
+  width:100%;
+  padding:18px 30px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
   backdrop-filter:blur(15px);
-  background:rgba(5,7,13,0.6);
+  background:rgba(5,7,13,0.7);
+  z-index:1000;
 }
+
 header::after{
-  content:"";position:absolute;bottom:0;width:200%;height:2px;
-  background:linear-gradient(90deg,#00d4ff,#00ffe5,#5b8cff);
+  content:"";
+  position:absolute;
+  bottom:0;
+  width:200%;
+  height:2px;
+  background:linear-gradient(90deg,#00d4ff,#00ffe5,#5b8cff,#00d4ff);
   animation:rgb 6s linear infinite;
 }
+
 @keyframes rgb{
   0%{transform:translateX(-50%)}
   100%{transform:translateX(0)}
 }
 
-.logo{font-family:'Orbitron';color:#00d4ff;}
+.logo{
+  font-family:'Orbitron';
+  color:#00d4ff;
+}
+
+/* NAV */
+nav{
+  display:flex;
+  gap:20px;
+}
 
 nav a{
-  margin-left:20px;color:#aaa;text-decoration:none;
+  color:#aaa;
+  text-decoration:none;
+  font-size:0.9rem;
 }
+
 nav a:hover{color:#fff;}
 
-.menu-toggle{display:none;}
+/* MENU MOBILE */
+.menu-toggle{
+  display:none;
+  font-size:1.5rem;
+  cursor:pointer;
+}
 
 /* HERO */
 .hero{
-  height:100vh;display:flex;justify-content:center;align-items:center;
-  text-align:center;opacity:0;transform:translateY(40px);
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  opacity:0;
+  transform:translateY(40px);
   transition:1s;
 }
-.hero img{width:180px;}
+
+.hero img{width:170px;}
+
 .hero h1{
   font-family:'Orbitron';
+  font-size:2.5rem;
   background:linear-gradient(90deg,#00d4ff,#00ffe5,#5b8cff);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
-.subtext{max-width:650px;color:#aaa;margin-top:10px;}
-#dynamic-text{color:#00d4ff;margin-top:10px;}
 
+.subtext{
+  max-width:650px;
+  color:#aaa;
+  margin-top:15px;
+}
+
+#dynamic-text{
+  color:#00d4ff;
+  margin-top:10px;
+}
+
+/* BOTON */
 .btn{
-  margin-top:20px;padding:12px 30px;border-radius:30px;
-  background:rgba(20,25,50,.5);color:#fff;border:none;
+  margin-top:25px;
+  padding:12px 30px;
+  border-radius:30px;
+  border:none;
+  background:rgba(20,25,50,.5);
+  color:#fff;
   cursor:pointer;
 }
 .btn:hover{
@@ -91,17 +154,23 @@ nav a:hover{color:#fff;}
 /* SECCIONES */
 section{
   padding:120px 20px;
-  max-width:1100px;margin:auto;
-  opacity:0;transform:translateY(40px);
+  max-width:1100px;
+  margin:auto;
+  opacity:0;
+  transform:translateY(40px);
   transition:1s;
 }
-section.show{opacity:1;transform:translateY(0);}
+section.show{
+  opacity:1;
+  transform:translateY(0);
+}
 
 /* CARDS */
 .card{
   background:rgba(20,25,50,.6);
-  padding:30px;border-radius:20px;
-  box-shadow:0 0 20px rgba(0,212,255,.2);
+  padding:30px;
+  border-radius:20px;
+  box-shadow:0 0 25px rgba(0,212,255,.2);
 }
 
 .grid{
@@ -112,38 +181,67 @@ section.show{opacity:1;transform:translateY(0);}
 
 /* BIENVENIDA */
 .welcome-box{
-  padding:50px;border-radius:20px;
+  padding:50px;
+  border-radius:20px;
   background:rgba(20,25,50,.6);
-  box-shadow:0 0 30px rgba(0,212,255,.2);
+  box-shadow:0 0 40px rgba(0,212,255,.2);
 }
 
 /* CAROUSEL */
 .carousel{overflow:hidden;border-radius:20px;}
 .slides{display:flex;transition:.5s;}
 .slide{min-width:100%;}
-.slide img{width:100%;}
-.dots{text-align:center;}
+.slide img{width:100%;border-radius:20px;}
+
+.dots{text-align:center;margin-top:10px;}
 .dots span{
-  display:inline-block;width:10px;height:10px;
-  background:#555;margin:5px;border-radius:50%;
+  display:inline-block;
+  width:10px;height:10px;
+  background:#555;margin:5px;
+  border-radius:50%;
+  cursor:pointer;
 }
 .dots .active{background:#00d4ff;}
 
 /* FORM */
 .contact-form input,
 .contact-form textarea{
-  width:100%;padding:12px;margin:10px 0;
-  border-radius:10px;border:none;
-  background:#111;color:#fff;
+  width:100%;
+  padding:12px;
+  margin:10px 0;
+  border-radius:10px;
+  border:none;
+  background:#111;
+  color:#fff;
 }
 
 /* FOOTER */
-footer{text-align:center;padding:30px;color:#777;}
+footer{
+  text-align:center;
+  padding:30px;
+  color:#777;
+}
 
+/* MOBILE */
 @media(max-width:768px){
+
   .menu-toggle{display:block;}
-  nav{display:none;flex-direction:column;}
-  nav.active{display:flex;}
+
+  nav{
+    position:absolute;
+    top:70px;
+    right:20px;
+    background:#0d1224;
+    flex-direction:column;
+    padding:20px;
+    border-radius:15px;
+    display:none;
+  }
+
+  nav.active{
+    display:flex;
+  }
+
 }
 </style>
 </head>
@@ -156,6 +254,7 @@ footer{text-align:center;padding:30px;color:#777;}
 <header>
 <div class="logo">AstroCode</div>
 <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
 <nav id="nav">
 <a href="#">Inicio</a>
 <a href="#nosotros">Nosotros</a>
@@ -170,10 +269,11 @@ footer{text-align:center;padding:30px;color:#777;}
 <section class="hero">
 <div>
 <img src="logo.png">
+
 <h1>Desarrollamos ideas digitales</h1>
 
 <p class="subtext">
-Transformamos conceptos en experiencias digitales sofisticadas, combinando diseño, tecnología y estrategia para construir marcas sólidas, memorables y orientadas a resultados reales en el entorno digital actual.
+Transformamos conceptos en experiencias digitales sofisticadas, combinando diseño, tecnología y estrategia para construir marcas sólidas, memorables y orientadas a resultados reales.
 </p>
 
 <p id="dynamic-text"></p>
@@ -186,7 +286,9 @@ Transformamos conceptos en experiencias digitales sofisticadas, combinando dise�
 <section id="bienvenida">
 <div class="welcome-box">
 <h2>Bienvenido a una nueva experiencia digital</h2>
-<p>En AstroCode no solo creamos sitios web, diseñamos ecosistemas digitales que conectan, impactan y generan resultados reales.</p>
+<p>
+En AstroCode no solo creamos sitios web, diseñamos ecosistemas digitales que conectan, impactan y generan resultados reales.
+</p>
 </div>
 </section>
 
@@ -196,7 +298,7 @@ Transformamos conceptos en experiencias digitales sofisticadas, combinando dise�
 <div class="grid">
 <div class="card">
 <h3>Historia</h3>
-<p>AstroCode nace con la visión de crear soluciones digitales que realmente impulsen negocios...</p>
+<p>AstroCode nació con la idea de transformar la manera en que las marcas se presentan digitalmente.</p>
 </div>
 <div class="card">
 <h3>Fundador</h3>
@@ -218,6 +320,7 @@ Transformamos conceptos en experiencias digitales sofisticadas, combinando dise�
 <!-- PORTAFOLIO -->
 <section id="portafolio">
 <h2>Portafolio</h2>
+
 <div class="carousel">
 <div class="slides">
 <div class="slide"><img src="https://picsum.photos/800/400?1"></div>
@@ -226,6 +329,7 @@ Transformamos conceptos en experiencias digitales sofisticadas, combinando dise�
 </div>
 <div class="dots"></div>
 </div>
+
 </section>
 
 <!-- TESTIMONIOS -->
@@ -240,20 +344,26 @@ Transformamos conceptos en experiencias digitales sofisticadas, combinando dise�
 <!-- CONTACTO -->
 <section id="contacto">
 <h2>Contacto</h2>
+
 <form class="contact-form" action="https://formspree.io/f/xblaqzoy" method="POST">
 <input type="text" name="name" placeholder="Nombre" required>
 <input type="email" name="email" placeholder="Correo" required>
 <textarea name="message" placeholder="Mensaje" required></textarea>
 <button class="btn">Enviar</button>
 </form>
+
 </section>
 
 <footer>© 2026 AstroCode Studio</footer>
 
 <script>
 
-/* LOADER */
+/* LOADER + ENTRADA */
 window.onload=()=>{
+  setTimeout(()=>{
+    document.getElementById("loader").style.opacity="0";
+  },3000);
+
   setTimeout(()=>{
     document.getElementById("loader").style.display="none";
     document.getElementById("stars").style.opacity="1";
@@ -261,64 +371,103 @@ window.onload=()=>{
   },4000);
 };
 
-/* MENU */
+/* MENU MOBILE */
 function toggleMenu(){
-document.getElementById("nav").classList.toggle("active");
+  document.getElementById("nav").classList.toggle("active");
 }
 
-/* TEXTO */
+/* ESTRELLAS */
+const canvas=document.getElementById("stars");
+const ctx=canvas.getContext("2d");
+
+function resize(){
+  canvas.width=window.innerWidth;
+  canvas.height=window.innerHeight;
+}
+resize();
+window.addEventListener("resize",resize);
+
+let stars=[];
+for(let i=0;i<150;i++){
+  stars.push({
+    x:Math.random()*canvas.width,
+    y:Math.random()*canvas.height,
+    size:Math.random()*1.5,
+    speed:Math.random()*0.5+0.2
+  });
+}
+
+function draw(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle="#fff";
+
+  stars.forEach(s=>{
+    s.y+=s.speed;
+    if(s.y>canvas.height){
+      s.y=0;
+      s.x=Math.random()*canvas.width;
+    }
+    ctx.fillRect(s.x,s.y,s.size,s.size);
+  });
+
+  requestAnimationFrame(draw);
+}
+draw();
+
+/* TEXTO DINAMICO */
 const phrases=["Experiencias que inspiran","Soluciones que venden","Tecnología que conecta"];
 let i=0;
 setInterval(()=>{
-document.getElementById("dynamic-text").textContent=phrases[i];
-i=(i+1)%phrases.length;
+  document.getElementById("dynamic-text").textContent=phrases[i];
+  i=(i+1)%phrases.length;
 },2000);
 
 /* SCROLL */
 const sections=document.querySelectorAll("section");
 window.addEventListener("scroll",()=>{
-sections.forEach(sec=>{
-if(sec.getBoundingClientRect().top<window.innerHeight-100){
-sec.classList.add("show");
-}
-});
+  sections.forEach(sec=>{
+    if(sec.getBoundingClientRect().top<window.innerHeight-100){
+      sec.classList.add("show");
+    }
+  });
 });
 
-/* CAROUSEL */
+/* CARRUSEL */
 let index=0;
 const slides=document.querySelector(".slides");
 const dots=document.querySelector(".dots");
-const total=slides.children.length;
 
-for(let i=0;i<total;i++){
-let d=document.createElement("span");
-d.onclick=()=>go(i);
-dots.appendChild(d);
+for(let i=0;i<slides.children.length;i++){
+  let d=document.createElement("span");
+  d.onclick=()=>go(i);
+  dots.appendChild(d);
 }
 
 function go(i){
-index=i;
-slides.style.transform=`translateX(-${i*100}%)`;
-update();
+  index=i;
+  slides.style.transform=`translateX(-${i*100}%)`;
+  update();
 }
+
 function update(){
-dots.querySelectorAll("span").forEach(d=>d.classList.remove("active"));
-dots.children[index].classList.add("active");
+  dots.querySelectorAll("span").forEach(d=>d.classList.remove("active"));
+  dots.children[index].classList.add("active");
 }
-setInterval(()=>go((index+1)%total),4000);
+
+setInterval(()=>go((index+1)%slides.children.length),4000);
 update();
 
 /* CHISPAS */
 function goToWelcome(e){
-for(let i=0;i<20;i++){
-let p=document.createElement("div");
-p.className="particle";
-p.style.left=e.clientX+"px";
-p.style.top=e.clientY+"px";
-document.body.appendChild(p);
-setTimeout(()=>p.remove(),1000);
-}
-document.getElementById("bienvenida").scrollIntoView({behavior:"smooth"});
+  for(let i=0;i<20;i++){
+    let p=document.createElement("div");
+    p.className="particle";
+    p.style.left=e.clientX+"px";
+    p.style.top=e.clientY+"px";
+    document.body.appendChild(p);
+    setTimeout(()=>p.remove(),1000);
+  }
+  document.getElementById("bienvenida").scrollIntoView({behavior:"smooth"});
 }
 
 </script>
