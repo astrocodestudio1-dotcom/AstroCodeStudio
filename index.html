@@ -19,7 +19,7 @@ body{
   overflow-x:hidden;
 }
 
-/* ===== LOADER ===== */
+/* LOADER */
 #loader{
   position:fixed;
   width:100%;
@@ -30,42 +30,36 @@ body{
   align-items:center;
   z-index:9999;
 }
-
 #loader img{
   width:220px;
   opacity:0;
   animation:introLogo 4s forwards;
 }
-
 @keyframes introLogo{
   0%{opacity:0;transform:scale(.6);filter:blur(20px);}
   60%{opacity:1;transform:scale(1.1);}
   100%{transform:scale(1);filter:drop-shadow(0 0 30px #00d4ff);}
 }
 
-/* ===== ESTRELLAS ===== */
+/* ESTRELLAS */
 #stars{
   position:fixed;
-  top:0;
-  left:0;
   width:100%;
   height:100%;
   z-index:-1;
 }
 
-/* ===== HEADER ===== */
+/* HEADER */
 header{
   position:fixed;
   width:100%;
   padding:18px 50px;
   display:flex;
   justify-content:space-between;
-  align-items:center;
   backdrop-filter:blur(15px);
   background:rgba(5,7,13,0.6);
   z-index:1000;
 }
-
 header::after{
   content:"";
   position:absolute;
@@ -75,7 +69,6 @@ header::after{
   background:linear-gradient(90deg,transparent,#00d4ff,#00ffe5,transparent);
   animation:lineFlow 6s linear infinite;
 }
-
 @keyframes lineFlow{
   0%{transform:translateX(-50%)}
   100%{transform:translateX(50%)}
@@ -93,28 +86,20 @@ nav a{
   text-decoration:none;
   position:relative;
 }
-
 nav a:hover{color:#fff;}
-
 nav a::after{
   content:"";
   position:absolute;
   bottom:-5px;
-  left:0;
-  width:0;
-  height:2px;
+  width:0;height:2px;
   background:#00d4ff;
   transition:.3s;
 }
 nav a:hover::after{width:100%;}
 
-.menu-toggle{
-  display:none;
-  font-size:1.5rem;
-  cursor:pointer;
-}
+.menu-toggle{display:none;font-size:1.5rem;cursor:pointer;}
 
-/* HERO */
+/* HERO (SIEMPRE VISIBLE) */
 .hero{
   height:100vh;
   display:flex;
@@ -122,6 +107,8 @@ nav a:hover::after{width:100%;}
   justify-content:center;
   align-items:center;
   text-align:center;
+  opacity:1 !important;
+  transform:none !important;
 }
 
 .hero img{
@@ -137,16 +124,8 @@ nav a:hover::after{width:100%;}
   -webkit-text-fill-color:transparent;
 }
 
-.subtext{
-  max-width:650px;
-  color:#aaa;
-  margin-top:15px;
-}
-
-#dynamic-text{
-  color:#00d4ff;
-  margin-top:10px;
-}
+.subtext{max-width:650px;color:#aaa;margin-top:15px;}
+#dynamic-text{color:#00d4ff;margin-top:10px;}
 
 /* BOTON */
 .btn{
@@ -159,7 +138,6 @@ nav a:hover::after{width:100%;}
   color:#fff;
   cursor:pointer;
 }
-
 .btn:hover{
   background:linear-gradient(90deg,#00d4ff,#00ffe5);
   color:#000;
@@ -174,46 +152,37 @@ section{
   transform:translateY(40px) scale(.97);
   transition:1s;
 }
-
 section.show{
   opacity:1;
   transform:translateY(0) scale(1);
 }
 
 /* BIENVENIDA */
-.welcome{
-  display:flex;
-  justify-content:center;
-}
-
+.welcome{display:flex;justify-content:center;}
 .welcome-box{
   max-width:750px;
-  text-align:center;
   padding:50px;
   border-radius:25px;
   background:rgba(20,25,50,.55);
   backdrop-filter:blur(25px);
   box-shadow:0 0 60px rgba(0,212,255,0.2);
-  transform:translateY(50px);
+  transform:translateY(80px) scale(.95);
   opacity:0;
-  transition:1s;
+  transition:1.2s;
 }
-
 .welcome.show .welcome-box{
-  transform:translateY(0);
+  transform:translateY(0) scale(1);
   opacity:1;
 }
 
-/* CARDS NEON */
+/* CARDS */
 .card{
   position:relative;
   background:rgba(20,25,50,.5);
   backdrop-filter:blur(20px);
   padding:30px;
   border-radius:20px;
-  overflow:hidden;
 }
-
 .card::before{
   content:"";
   position:absolute;
@@ -230,7 +199,6 @@ section.show{
   -webkit-mask-composite:xor;
   mask-composite:exclude;
 }
-
 @keyframes neon{
   0%{background-position:0%}
   100%{background-position:100%}
@@ -245,18 +213,13 @@ section.show{
 /* PARTICULAS */
 .particle{
   position:fixed;
-  width:6px;
-  height:6px;
+  width:6px;height:6px;
   background:#00d4ff;
   border-radius:50%;
   animation:particle 1s forwards;
 }
-
 @keyframes particle{
-  to{
-    transform:translate(var(--x),var(--y));
-    opacity:0;
-  }
+  to{transform:translate(var(--x),var(--y));opacity:0;}
 }
 
 /* FOOTER */
@@ -268,9 +231,7 @@ footer{
 
 /* MOBILE */
 @media(max-width:768px){
-
   .menu-toggle{display:block;}
-
   nav{
     position:absolute;
     top:70px;
@@ -281,9 +242,7 @@ footer{
     display:none;
     flex-direction:column;
   }
-
   nav a{margin:10px 0;}
-
   nav.active{display:flex;}
 }
 
@@ -302,7 +261,6 @@ footer{
 <header>
   <div class="logo">AstroCode</div>
   <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-
   <nav id="nav">
     <a href="#">Inicio</a>
     <a href="#nosotros">Nosotros</a>
@@ -316,61 +274,29 @@ footer{
 <section class="hero">
   <img src="logo.png">
   <h1>Desarrollamos ideas digitales</h1>
-
   <p class="subtext">
     Transformamos ideas en experiencias digitales de alto impacto,
     donde diseño, tecnología y estrategia se fusionan para crear marcas memorables.
   </p>
-
   <p id="dynamic-text"></p>
-
   <button class="btn" onclick="goToWelcome(event)">Bienvenidos</button>
 </section>
 
 <section id="bienvenida" class="welcome">
   <div class="welcome-box">
     <h2>Bienvenido a una nueva experiencia digital</h2>
-    <p>En AstroCode no solo creamos sitios web, diseñamos ecosistemas digitales que conectan, impactan y generan resultados reales.</p>
+    <p>
+      En AstroCode no solo creamos sitios web, diseñamos ecosistemas digitales que conectan,
+      impactan y generan resultados reales.
+    </p>
   </div>
 </section>
 
-<section id="nosotros">
-  <h2>Nosotros</h2>
-  <div class="grid">
-    <div class="card">Historia de AstroCode...</div>
-    <div class="card">Tu perfil</div>
-  </div>
-</section>
-
-<section id="servicios">
-  <h2>Servicios</h2>
-  <div class="grid">
-    <div class="card">Desarrollo Web</div>
-    <div class="card">UI/UX</div>
-    <div class="card">Apps</div>
-  </div>
-</section>
-
-<section id="portafolio">
-  <h2>Portafolio</h2>
-  <div class="grid">
-    <div class="card">Proyecto 1</div>
-    <div class="card">Proyecto 2</div>
-  </div>
-</section>
-
-<section id="testimonios">
-  <h2>Testimonios</h2>
-  <div class="grid">
-    <div class="card">"Excelente trabajo"</div>
-    <div class="card">"Muy profesional"</div>
-  </div>
-</section>
-
-<section id="contacto">
-  <h2>Contacto</h2>
-  <p style="text-align:center;">Trabajemos juntos 🚀</p>
-</section>
+<section id="nosotros"><h2>Nosotros</h2></section>
+<section id="servicios"><h2>Servicios</h2></section>
+<section id="portafolio"><h2>Portafolio</h2></section>
+<section id="testimonios"><h2>Testimonios</h2></section>
+<section id="contacto"><h2>Contacto</h2></section>
 
 <footer>
   © 2026 AstroCode Studio — Todos los derechos reservados
@@ -412,23 +338,18 @@ function draw(){
 draw();
 
 /* TEXTO DINAMICO */
-const phrases=[
-  "Experiencias que inspiran",
-  "Soluciones que venden",
-  "Tecnología que conecta"
-];
+const phrases=["Experiencias que inspiran","Soluciones que venden","Tecnología que conecta"];
 let i=0;
 setInterval(()=>{
   document.getElementById("dynamic-text").textContent=phrases[i];
   i=(i+1)%phrases.length;
 },2000);
 
-/* SCROLL + ANIMACIONES */
-const sections=document.querySelectorAll("section");
+/* SCROLL ANIMACIONES */
+const sections=document.querySelectorAll("section:not(.hero)");
 window.addEventListener("scroll",()=>{
   sections.forEach(sec=>{
-    const top=sec.getBoundingClientRect().top;
-    if(top<window.innerHeight-100){
+    if(sec.getBoundingClientRect().top<window.innerHeight-100){
       sec.classList.add("show");
     }
   });
@@ -451,11 +372,13 @@ function goToWelcome(e){
     setTimeout(()=>p.remove(),1000);
   }
 
-  document.getElementById("bienvenida").scrollIntoView({behavior:"smooth"});
+  const section=document.getElementById("bienvenida");
+
+  section.scrollIntoView({behavior:"smooth"});
 
   setTimeout(()=>{
-    document.querySelector(".welcome").classList.add("show");
-  },400);
+    section.classList.add("show");
+  },500);
 }
 
 </script>
