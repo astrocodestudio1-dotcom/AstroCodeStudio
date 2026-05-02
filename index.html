@@ -9,7 +9,7 @@
 
 <style>
 
-/* ===== BASE ===== */
+/* ===== RESET ===== */
 *{margin:0;padding:0;box-sizing:border-box;}
 
 body{
@@ -19,7 +19,7 @@ body{
   overflow-x:hidden;
 }
 
-/* FONDO SUAVE PREMIUM */
+/* ===== FONDO ===== */
 body::before{
   content:"";
   position:fixed;
@@ -110,7 +110,13 @@ nav a:hover{color:#fff;}
   line-height:1.7;
 }
 
-/* BOTÓN PREMIUM */
+#dynamic-text{
+  margin-top:15px;
+  color:#00d4ff;
+  min-height:20px;
+}
+
+/* ===== BOTÓN ===== */
 .btn{
   margin-top:35px;
   padding:14px 38px;
@@ -141,7 +147,7 @@ h2{
   margin-bottom:60px;
 }
 
-/* ===== BIENVENIDA (PROTAGONISTA) ===== */
+/* ===== BIENVENIDA ===== */
 .welcome{
   display:flex;
   justify-content:center;
@@ -153,16 +159,10 @@ h2{
   text-align:center;
   padding:50px;
   border-radius:25px;
-
   background:rgba(15,20,40,0.6);
   backdrop-filter:blur(25px);
-
   border:1px solid rgba(255,255,255,.05);
-
-  box-shadow:
-    0 0 60px rgba(0,212,255,0.15),
-    inset 0 0 30px rgba(255,255,255,0.02);
-
+  box-shadow:0 0 60px rgba(0,212,255,0.15);
   transform:translateY(40px);
   opacity:0;
   transition:1s;
@@ -176,7 +176,6 @@ h2{
 .welcome p{
   color:#ccc;
   line-height:1.8;
-  font-size:1.05rem;
 }
 
 /* ===== NOSOTROS ===== */
@@ -248,12 +247,15 @@ h2{
 <!-- HERO -->
 <section class="hero">
   <img src="logo.png">
+
   <h1>Desarrollamos ideas digitales</h1>
 
   <p class="subtext">
-    Transformamos conceptos en experiencias digitales sofisticadas, combinando diseño moderno,
-    tecnología avanzada y estrategia para impulsar marcas hacia el futuro.
+    Transformamos ideas en experiencias digitales de alto impacto, donde el diseño, la tecnología
+    y la estrategia se fusionan para crear productos que conectan, evolucionan y generan resultados reales.
   </p>
+
+  <p id="dynamic-text"></p>
 
   <button class="btn" onclick="goToWelcome(event)">Bienvenidos</button>
 </section>
@@ -307,7 +309,22 @@ window.onload=()=>{
   setTimeout(()=>document.getElementById("spacex-loader").style.display="none",4000);
 }
 
-/* partículas + animación */
+/* texto dinámico */
+const phrases = [
+  "Diseñamos experiencias que inspiran confianza",
+  "Construimos soluciones que impulsan negocios",
+  "Creamos tecnología que conecta con personas",
+  "Transformamos ideas en productos digitales reales"
+];
+
+let i = 0;
+
+setInterval(()=>{
+  document.getElementById("dynamic-text").textContent = phrases[i];
+  i = (i + 1) % phrases.length;
+}, 2500);
+
+/* partículas + scroll */
 function goToWelcome(e){
 
   for(let i=0;i<20;i++){
