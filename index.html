@@ -5,28 +5,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AstroCode Studio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
 
-/* ===== RESET ===== */
+/* ===== BASE ===== */
 *{margin:0;padding:0;box-sizing:border-box;}
 
 body{
   font-family:'Inter',sans-serif;
-  background:#06090f;
+  background:#05070d;
   color:#fff;
   overflow-x:hidden;
 }
 
-/* ===== FONDO ESPACIAL SUAVE ===== */
+/* FONDO SUAVE PREMIUM */
 body::before{
   content:"";
   position:fixed;
-  width:800px;
-  height:800px;
-  background:radial-gradient(circle,#00d4ff22,transparent 70%);
-  top:-200px;
+  width:900px;
+  height:900px;
+  background:radial-gradient(circle,#00d4ff15,transparent 70%);
+  top:-300px;
   left:-200px;
   filter:blur(120px);
   z-index:-1;
@@ -42,14 +42,14 @@ body::before{
 }
 
 .logo-3d img{
-  width:240px;
+  width:230px;
   animation:intro 4s forwards;
   opacity:0;
 }
 
 @keyframes intro{
-  0%{opacity:0;transform:scale(.6);filter:blur(20px);}
-  60%{opacity:1;transform:scale(1.1);}
+  0%{opacity:0;transform:scale(.6);filter:blur(25px);}
+  60%{opacity:1;transform:scale(1.08);}
   100%{transform:scale(1);filter:drop-shadow(0 0 30px #00d4ff);}
 }
 
@@ -57,23 +57,23 @@ body::before{
 header{
   position:fixed;
   width:100%;
-  padding:15px 40px;
+  padding:18px 50px;
   display:flex;
   justify-content:space-between;
-  backdrop-filter:blur(10px);
+  backdrop-filter:blur(12px);
   z-index:1000;
 }
 
 .logo{
   font-family:'Orbitron';
   color:#00d4ff;
-  letter-spacing:1px;
 }
 
 nav a{
-  margin-left:25px;
+  margin-left:30px;
   color:#aaa;
   text-decoration:none;
+  font-size:.9rem;
   transition:.3s;
 }
 nav a:hover{color:#fff;}
@@ -86,102 +86,83 @@ nav a:hover{color:#fff;}
   justify-content:center;
   align-items:center;
   text-align:center;
+  padding:20px;
 }
 
 .hero img{
-  width:200px;
-  margin-bottom:20px;
-  filter:drop-shadow(0 0 20px #00d4ff55);
+  width:180px;
+  margin-bottom:25px;
+  filter:drop-shadow(0 0 25px #00d4ff40);
 }
 
 .hero h1{
   font-family:'Orbitron';
-  font-size:2.7rem;
+  font-size:2.8rem;
   background:linear-gradient(90deg,#00d4ff,#5b8cff,#8a2be2);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
 
-/* TEXTO */
 .subtext{
-  margin-top:15px;
-  max-width:650px;
+  margin-top:20px;
+  max-width:680px;
   color:#aaa;
-  line-height:1.6;
+  line-height:1.7;
 }
 
-/* BOTÓN PRO */
+/* BOTÓN PREMIUM */
 .btn{
-  margin-top:30px;
-  padding:14px 35px;
-  border-radius:40px;
-  border:1px solid #333;
-  background:#0f1425;
+  margin-top:35px;
+  padding:14px 38px;
+  border-radius:50px;
+  border:1px solid #2a2f45;
+  background:#0d1224;
   color:#fff;
   cursor:pointer;
-  transition:.3s;
-  box-shadow:0 0 0 rgba(0,212,255,0);
+  transition:.4s;
 }
 
 .btn:hover{
   background:linear-gradient(90deg,#00d4ff,#5b8cff,#8a2be2);
   color:#000;
-  box-shadow:0 0 20px rgba(0,212,255,0.4);
+  box-shadow:0 0 25px rgba(0,212,255,0.3);
 }
 
-/* ===== CARDS CON VIDA ===== */
-.card{
-  background:linear-gradient(145deg,#0f1425,#0a0d18);
-  padding:30px;
-  border-radius:20px;
-  border:1px solid rgba(255,255,255,.05);
-  transition:.4s;
-  position:relative;
-  overflow:hidden;
+/* ===== SECCIONES ===== */
+section{
+  padding:120px 20px;
+  max-width:1100px;
+  margin:auto;
 }
 
-.card::before{
-  content:"";
-  position:absolute;
-  width:200%;
-  height:200%;
-  background:radial-gradient(circle,#00d4ff33,transparent 70%);
-  top:-50%;
-  left:-50%;
-  opacity:0;
-  transition:.5s;
+h2{
+  text-align:center;
+  font-family:'Orbitron';
+  margin-bottom:60px;
 }
 
-.card:hover::before{opacity:1;}
-
-.card:hover{
-  transform:translateY(-10px) scale(1.02);
-}
-
-/* ===== GRID ===== */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:25px;
-}
-
-/* ===== BIENVENIDA ===== */
+/* ===== BIENVENIDA (PROTAGONISTA) ===== */
 .welcome{
   display:flex;
   justify-content:center;
   align-items:center;
-  padding:100px 20px;
 }
 
 .welcome-box{
-  max-width:700px;
+  max-width:750px;
   text-align:center;
-  padding:40px;
-  border-radius:20px;
-  background:rgba(20,25,50,.6);
-  backdrop-filter:blur(20px);
+  padding:50px;
+  border-radius:25px;
+
+  background:rgba(15,20,40,0.6);
+  backdrop-filter:blur(25px);
+
   border:1px solid rgba(255,255,255,.05);
-  box-shadow:0 0 40px rgba(0,212,255,.15);
+
+  box-shadow:
+    0 0 60px rgba(0,212,255,0.15),
+    inset 0 0 30px rgba(255,255,255,0.02);
+
   transform:translateY(40px);
   opacity:0;
   transition:1s;
@@ -192,18 +173,36 @@ nav a:hover{color:#fff;}
   opacity:1;
 }
 
+.welcome p{
+  color:#ccc;
+  line-height:1.8;
+  font-size:1.05rem;
+}
+
 /* ===== NOSOTROS ===== */
 .about-container{
   display:grid;
   grid-template-columns:1fr 280px;
-  gap:30px;
+  gap:35px;
+}
+
+.card{
+  background:rgba(15,20,40,0.6);
+  backdrop-filter:blur(20px);
+  padding:40px;
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,.05);
+}
+
+.profile-box{
+  text-align:center;
 }
 
 .profile-box img{
   width:120px;
   border-radius:50%;
-  margin-bottom:10px;
-  box-shadow:0 0 20px #00d4ff55;
+  margin-bottom:15px;
+  box-shadow:0 0 25px rgba(0,212,255,.3);
 }
 
 /* ===== PARTICULAS ===== */
@@ -222,18 +221,7 @@ nav a:hover{color:#fff;}
 @media(max-width:768px){
   nav{display:none;}
   .about-container{grid-template-columns:1fr;}
-}
-
-section{
-  padding:100px 20px;
-  max-width:1100px;
-  margin:auto;
-}
-
-h2{
-  text-align:center;
-  font-family:'Orbitron';
-  margin-bottom:40px;
+  .hero h1{font-size:2rem;}
 }
 
 </style>
@@ -253,30 +241,35 @@ h2{
   <nav>
     <a href="#">Inicio</a>
     <a href="#nosotros">Nosotros</a>
-    <a href="#servicios">Servicios</a>
-    <a href="#portafolio">Portafolio</a>
     <a href="#contacto">Contacto</a>
   </nav>
 </header>
 
+<!-- HERO -->
 <section class="hero">
   <img src="logo.png">
   <h1>Desarrollamos ideas digitales</h1>
+
   <p class="subtext">
-    Transformamos conceptos en experiencias digitales sofisticadas, combinando diseño,
-    tecnología y estrategia para impulsar marcas.
+    Transformamos conceptos en experiencias digitales sofisticadas, combinando diseño moderno,
+    tecnología avanzada y estrategia para impulsar marcas hacia el futuro.
   </p>
+
   <button class="btn" onclick="goToWelcome(event)">Bienvenidos</button>
 </section>
 
+<!-- BIENVENIDA -->
 <section id="bienvenida" class="welcome">
   <div class="welcome-box">
     <h2>Bienvenido a una nueva experiencia digital</h2>
+
     <p>
       En AstroCode no solo creamos sitios web, diseñamos ecosistemas digitales que conectan,
       impactan y generan resultados reales.
     </p>
+
     <br>
+
     <p>
       Nuestro enfoque combina creatividad, tecnología y estrategia para construir soluciones
       que marcan la diferencia.
@@ -284,13 +277,17 @@ h2{
   </div>
 </section>
 
+<!-- NOSOTROS -->
 <section id="nosotros">
   <h2>Nosotros</h2>
+
   <div class="about-container">
+
     <div class="card">
       <p>
-        AstroCode Studio nace de la pasión por crear tecnología que no solo funcione,
-        sino que inspire. Cada proyecto es una oportunidad de construir algo único.
+        AstroCode Studio nace con la visión de crear soluciones digitales que realmente generen impacto.
+        Más que desarrollar sitios web, buscamos construir experiencias que conecten con las personas
+        y eleven el valor de cada marca.
       </p>
     </div>
 
@@ -299,6 +296,7 @@ h2{
       <h3>Tu Nombre</h3>
       <p>Fundador & Developer</p>
     </div>
+
   </div>
 </section>
 
@@ -309,15 +307,19 @@ window.onload=()=>{
   setTimeout(()=>document.getElementById("spacex-loader").style.display="none",4000);
 }
 
-/* partículas */
+/* partículas + animación */
 function goToWelcome(e){
+
   for(let i=0;i<20;i++){
     let p=document.createElement("div");
     p.className="particle";
+
     p.style.left=e.clientX+"px";
     p.style.top=e.clientY+"px";
+
     p.style.setProperty('--x',(Math.random()*200-100)+"px");
     p.style.setProperty('--y',(Math.random()*200-100)+"px");
+
     document.body.appendChild(p);
     setTimeout(()=>p.remove(),1000);
   }
