@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AstroCode Studio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
 
@@ -14,66 +14,91 @@
 
 body{
   font-family:'Inter',sans-serif;
-  background:#0b0f1a;
+  background:#03050a;
   color:#fff;
+  overflow-x:hidden;
+  cursor:none;
 }
 
-/* ===== LOADER ===== */
-#spacex-loader{
+/* ===== CANVAS ESTRELLAS ===== */
+#stars{
   position:fixed;
-  width:100%;height:100vh;
-  background:#000;
-  display:flex;justify-content:center;align-items:center;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:-1;
+}
+
+/* ===== CURSOR ===== */
+.cursor{
+  position:fixed;
+  width:12px;
+  height:12px;
+  background:#00d4ff;
+  border-radius:50%;
+  pointer-events:none;
+  box-shadow:0 0 20px #00d4ff;
+  transform:translate(-50%,-50%);
+  transition:transform .1s;
   z-index:9999;
-  perspective:1200px;
 }
 
-.logo-3d img{
-  width:240px;
-  opacity:0;
-  transform:translateZ(-800px) scale(.4);
-  animation:intro 4.5s forwards;
-}
-
-@keyframes intro{
-  0%{opacity:0;transform:translateZ(-1000px) scale(.3);filter:blur(20px);}
-  40%{opacity:1;transform:translateZ(100px) scale(1.1);filter:blur(0);}
-  100%{transform:scale(1);filter:drop-shadow(0 0 40px #00d4ff);}
-}
-
-#spacex-loader.fade-out{
-  animation:fadeOut 1s forwards;
-}
-@keyframes fadeOut{to{opacity:0;visibility:hidden;}}
-
-/* ===== NAV ===== */
+/* ===== HEADER ===== */
 header{
   position:fixed;
   width:100%;
-  padding:15px 40px;
+  padding:18px 50px;
   display:flex;
   justify-content:space-between;
-  align-items:center;
+  backdrop-filter:blur(15px);
+  background:rgba(5,7,13,0.6);
   z-index:1000;
-  backdrop-filter:blur(10px);
+}
+
+header::after{
+  content:"";
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:2px;
+  background:linear-gradient(90deg,transparent,#00d4ff,#00ffe5,transparent);
+  animation:lineFlow 6s linear infinite;
+}
+
+@keyframes lineFlow{
+  0%{transform:translateX(-50%)}
+  100%{transform:translateX(50%)}
 }
 
 .logo{
   font-family:'Orbitron';
   color:#00d4ff;
+  text-shadow:0 0 10px #00d4ff;
 }
 
 nav a{
   margin-left:25px;
+  color:#aaa;
   text-decoration:none;
-  color:#ccc;
-  font-size:.9rem;
-  transition:.3s;
+  position:relative;
 }
 
 nav a:hover{color:#fff;}
 
-/* ===== HERO ===== */
+nav a::after{
+  content:"";
+  position:absolute;
+  bottom:-5px;
+  left:0;
+  width:0;
+  height:2px;
+  background:#00d4ff;
+  transition:.3s;
+}
+nav a:hover::after{width:100%;}
+
+/* HERO */
 .hero{
   height:100vh;
   display:flex;
@@ -81,128 +106,114 @@ nav a:hover{color:#fff;}
   justify-content:center;
   align-items:center;
   text-align:center;
-  padding:20px;
 }
 
-.hero img{width:200px;margin-bottom:20px;}
+.hero img{
+  width:180px;
+  filter:drop-shadow(0 0 20px #00d4ff);
+}
 
-/* TITULO PRO */
 .hero h1{
   font-family:'Orbitron';
-  font-size:2.7rem;
-  background:linear-gradient(90deg,#00d4ff,#5b8cff,#8a2be2);
+  font-size:2.8rem;
+  background:linear-gradient(90deg,#00d4ff,#5b8cff,#00ffe5);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
 
-/* TEXTO ELEGANTE */
 .subtext{
-  margin-top:15px;
-  max-width:700px;
+  max-width:650px;
   color:#aaa;
-  font-size:1.1rem;
-  line-height:1.6;
+  margin-top:15px;
 }
 
-/* TEXTO IA */
 #dynamic-text{
-  margin-top:12px;
   color:#00d4ff;
+  margin-top:10px;
 }
 
-/* BOTÓN ELEGANTE */
+/* BOTON */
 .btn{
   margin-top:25px;
   padding:14px 35px;
   border-radius:40px;
-  border:1px solid #444;
-  background:transparent;
+  border:1px solid rgba(255,255,255,.1);
+  background:rgba(20,25,50,.5);
+  backdrop-filter:blur(10px);
   color:#fff;
   cursor:pointer;
-  transition:.3s;
-  position:relative;
-  overflow:hidden;
 }
 
-/* HOVER RGB */
 .btn:hover{
-  border-color:transparent;
-  background:linear-gradient(90deg,#00d4ff,#5b8cff,#8a2be2);
+  background:linear-gradient(90deg,#00d4ff,#00ffe5);
   color:#000;
-  animation:rgbMove 2s linear infinite;
 }
 
-@keyframes rgbMove{
-  0%{background-position:0%}
-  100%{background-position:200%}
-}
-
-/* ===== SECCIONES ===== */
+/* SECCIONES */
 section{
-  padding:100px 20px;
+  padding:120px 20px;
   max-width:1100px;
   margin:auto;
-}
-
-h2{
-  font-family:'Orbitron';
-  text-align:center;
-  margin-bottom:40px;
-}
-
-/* ===== NOSOTROS ===== */
-.about{
-  text-align:center;
-  max-width:800px;
-  margin:auto;
-  color:#ccc;
-  line-height:1.7;
-}
-
-/* ===== BIENVENIDA ===== */
-.welcome{
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:40px;
-  position:relative;
-}
-
-.welcome::before{
-  content:"";
-  position:absolute;
-  width:600px;height:600px;
-  background:radial-gradient(circle,#00d4ff33,transparent 70%);
-  top:-100px;left:-100px;
-  filter:blur(120px);
-}
-
-.welcome-box{
-  background:rgba(20,25,50,.6);
-  backdrop-filter:blur(20px);
-  padding:40px;
-  border-radius:20px;
-  max-width:700px;
-  text-align:center;
-  border:1px solid rgba(255,255,255,.05);
-  transform:translateY(60px);
   opacity:0;
+  transform:translateY(40px) scale(.97);
   transition:1s;
 }
 
-.welcome.show .welcome-box{
-  transform:translateY(0);
+section.show{
   opacity:1;
+  transform:translateY(0) scale(1);
 }
 
-/* ===== RESPONSIVE ===== */
+/* CARDS GLASS PRO */
+.card{
+  position:relative;
+  background:rgba(20,25,50,.5);
+  backdrop-filter:blur(20px);
+  padding:30px;
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,.05);
+  overflow:hidden;
+}
+
+/* NEON BORDE */
+.card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  padding:1px;
+  border-radius:20px;
+  background:linear-gradient(120deg,#00d4ff,#00ffe5,#5b8cff,#00d4ff);
+  background-size:300% 300%;
+  animation:neon 6s linear infinite;
+
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+}
+
+@keyframes neon{
+  0%{background-position:0%}
+  100%{background-position:100%}
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:25px;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:40px;
+  color:#777;
+}
+
+/* MOBILE */
 @media(max-width:768px){
-
   nav{display:none;}
-  .hero h1{font-size:1.9rem;}
-  .subtext{font-size:1rem;}
-
 }
 
 </style>
@@ -210,12 +221,8 @@ h2{
 
 <body>
 
-<!-- LOADER -->
-<div id="spacex-loader">
-  <div class="logo-3d">
-    <img src="logo.png">
-  </div>
-</div>
+<canvas id="stars"></canvas>
+<div class="cursor"></div>
 
 <header>
   <div class="logo">AstroCode</div>
@@ -224,62 +231,74 @@ h2{
     <a href="#nosotros">Nosotros</a>
     <a href="#servicios">Servicios</a>
     <a href="#portafolio">Portafolio</a>
+    <a href="#testimonios">Testimonios</a>
     <a href="#contacto">Contacto</a>
   </nav>
 </header>
 
-<!-- HERO -->
 <section class="hero">
   <img src="logo.png">
-
   <h1>Desarrollamos ideas digitales</h1>
 
   <p class="subtext">
-    Transformamos conceptos en experiencias digitales sofisticadas, combinando diseño moderno,
-    tecnología avanzada y estrategia para impulsar el crecimiento de tu marca.
+    Transformamos ideas en experiencias digitales de alto impacto,
+    donde diseño, tecnología y estrategia se fusionan para crear marcas memorables.
   </p>
 
   <p id="dynamic-text"></p>
 
-  <button class="btn" onclick="goToWelcome()">Bienvenidos</button>
+  <button class="btn" onclick="scrollToSection()">Bienvenidos</button>
 </section>
 
-<!-- BIENVENIDA -->
-<section id="bienvenida" class="welcome">
-  <div class="welcome-box">
-    <h2>Bienvenido a AstroCode</h2>
-    <p>
-      Creamos soluciones digitales que conectan con las personas, elevan marcas y generan impacto real.
-    </p>
-  </div>
-</section>
-
-<!-- NOSOTROS -->
 <section id="nosotros">
   <h2>Nosotros</h2>
-  <div class="about">
-    <p>
-      AstroCode Studio es una empresa enfocada en el desarrollo de soluciones tecnológicas modernas,
-      combinando creatividad, diseño y programación para construir productos digitales de alto nivel.
-    </p>
+  <div class="grid">
+    <div class="card">Historia de AstroCode...</div>
+    <div class="card">Tu perfil</div>
   </div>
 </section>
+
+<footer>
+  © 2026 AstroCode Studio — Todos los derechos reservados
+</footer>
 
 <script>
 
-/* loader */
-window.onload=()=>{
-  setTimeout(()=>{
-    document.getElementById("spacex-loader").classList.add("fade-out");
-  },4500);
+/* ===== CURSOR ===== */
+const cursor=document.querySelector('.cursor');
+document.addEventListener('mousemove',e=>{
+  cursor.style.left=e.clientX+"px";
+  cursor.style.top=e.clientY+"px";
+});
+
+/* ===== ESTRELLAS ===== */
+const canvas=document.getElementById('stars');
+const ctx=canvas.getContext('2d');
+canvas.width=innerWidth;
+canvas.height=innerHeight;
+
+let stars=[];
+for(let i=0;i<150;i++){
+  stars.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,s:Math.random()*2});
 }
 
-/* texto dinámico */
+function draw(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle="white";
+  stars.forEach(star=>{
+    ctx.fillRect(star.x,star.y,star.s,star.s);
+    star.y+=0.2;
+    if(star.y>canvas.height)star.y=0;
+  });
+  requestAnimationFrame(draw);
+}
+draw();
+
+/* ===== TEXTO ===== */
 const phrases=[
-  "Innovación constante",
-  "Diseño que impacta",
-  "Tecnología que evoluciona",
-  "Experiencias que conectan"
+"Experiencias que inspiran",
+"Soluciones que venden",
+"Tecnología que conecta"
 ];
 let i=0;
 setInterval(()=>{
@@ -287,12 +306,19 @@ setInterval(()=>{
   i=(i+1)%phrases.length;
 },2000);
 
-/* scroll bienvenida */
-function goToWelcome(){
-  document.getElementById("bienvenida").scrollIntoView({behavior:"smooth"});
-  setTimeout(()=>{
-    document.querySelector(".welcome").classList.add("show");
-  },400);
+/* ===== SCROLL APPLE ===== */
+const sections=document.querySelectorAll("section");
+window.addEventListener("scroll",()=>{
+  sections.forEach(sec=>{
+    const top=sec.getBoundingClientRect().top;
+    if(top<window.innerHeight-100){
+      sec.classList.add("show");
+    }
+  });
+});
+
+function scrollToSection(){
+  window.scrollTo({top:window.innerHeight,behavior:"smooth"});
 }
 
 </script>
