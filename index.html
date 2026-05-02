@@ -26,88 +26,81 @@ body {
 }
 
 /* ========================= */
-/* 🚀 LOADER SPACE X */
+/* 🚀 LOADER CINEMÁTICO PRO */
 /* ========================= */
 
 #spacex-loader {
   position: fixed;
   width: 100%;
   height: 100vh;
-  background: radial-gradient(circle, #02040a, #000);
+  background: radial-gradient(circle at center, #02040a 0%, #000 80%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   z-index: 9999;
+  perspective: 1200px;
   overflow: hidden;
 }
 
-.stars-layer {
+/* GLOW SUAVE */
+#spacex-loader::before {
+  content: "";
   position: absolute;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(white 1px, transparent 1px);
-  background-size: 3px 3px;
-  animation: starsMove 60s linear infinite;
-  opacity: 0.3;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(0,212,255,0.12), transparent 70%);
+  filter: blur(100px);
 }
 
-@keyframes starsMove {
-  to { transform: translateY(-1000px); }
+/* CONTENEDOR 3D */
+.logo-3d {
+  transform-style: preserve-3d;
 }
 
-.logo-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.logo-container img {
-  width: 240px;
+/* LOGO */
+.logo-3d img {
+  width: 260px;
   opacity: 0;
-  transform: scale(0.6);
-  animation: logoCinematic 4s ease forwards;
+  transform: translateZ(-800px) scale(0.4) rotateX(20deg);
+  filter: blur(12px);
+  animation: logoDeepSpace 4.5s cubic-bezier(.19,1,.22,1) forwards;
 }
 
-@keyframes logoCinematic {
+/* ANIMACIÓN */
+@keyframes logoDeepSpace {
+
   0% {
     opacity: 0;
-    transform: scale(0.5) translateY(40px);
-    filter: blur(12px);
+    transform: translateZ(-1000px) scale(0.3) rotateX(25deg);
+    filter: blur(20px);
   }
-  30% {
+
+  40% {
     opacity: 1;
-    transform: scale(1.05);
+    transform: translateZ(100px) scale(1.1) rotateX(5deg);
     filter: blur(0);
   }
+
   60% {
-    transform: scale(1);
-    filter: drop-shadow(0 0 30px #00d4ff);
+    transform: translateZ(0px) scale(0.98);
   }
-  80% {
-    filter: drop-shadow(0 0 60px #5b8cff);
+
+  75% {
+    transform: translateZ(0px) scale(1.02);
   }
+
   100% {
-    transform: scale(1);
+    transform: translateZ(0px) scale(1);
+    filter: drop-shadow(0 0 40px #00d4ff);
   }
 }
 
-.flash {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle, rgba(0,212,255,0.4), transparent 70%);
-  opacity: 0;
-  animation: flashEffect 1s ease;
-  animation-delay: 3.2s;
-}
-
-@keyframes flashEffect {
-  50% { opacity: 0.6; }
-}
-
+/* SALIDA */
 #spacex-loader.fade-out {
-  animation: fadeOutLoader 1.2s ease forwards;
+  animation: fadeOut 1.2s ease forwards;
 }
 
-@keyframes fadeOutLoader {
+@keyframes fadeOut {
   to {
     opacity: 0;
     visibility: hidden;
@@ -115,29 +108,19 @@ body {
 }
 
 /* ========================= */
-/* 🌌 FONDO NORMAL */
+/* 🌌 FONDO LIMPIO */
 /* ========================= */
 
-.stars {
+body::before {
+  content: "";
   position: fixed;
-  width: 100%;
-  height: 100%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(91,140,255,0.15), transparent 70%);
+  top: -100px;
+  right: -100px;
+  filter: blur(100px);
   z-index: -1;
-}
-
-.stars::before {
-  content:"";
-  position:absolute;
-  width:200%;
-  height:200%;
-  background:radial-gradient(white 1px, transparent 1px);
-  background-size:3px 3px;
-  animation:move 120s linear infinite;
-  opacity:0.3;
-}
-
-@keyframes move {
-  to { transform:translateY(-1200px); }
 }
 
 /* NAVBAR */
@@ -224,6 +207,11 @@ h2 {
   padding:30px;
   border-radius:20px;
   text-align:center;
+  transition:0.3s;
+}
+
+.card:hover {
+  transform:translateY(-10px);
 }
 
 .card i {
@@ -270,16 +258,12 @@ footer {
 
 <body>
 
-<!-- 🚀 LOADER -->
+<!-- 🚀 INTRO -->
 <div id="spacex-loader">
-  <div class="stars-layer"></div>
-  <div class="logo-container">
-    <img src="logo-completo.png">
+  <div class="logo-3d">
+    <img src="logo.png" alt="AstroCode">
   </div>
-  <div class="flash"></div>
 </div>
-
-<div class="stars"></div>
 
 <header id="navbar">
   <div>AstroCode</div>
@@ -293,7 +277,7 @@ footer {
 </header>
 
 <section class="hero">
-  <img src="logo-completo.png">
+  <img src="logo.png">
   <h1>Desarrollamos ideas digitales</h1>
   <button class="btn">Contáctanos</button>
 </section>
@@ -301,7 +285,7 @@ footer {
 <section id="servicios">
   <h2>Servicios</h2>
   <div class="grid">
-    <div class="card"><i class="fas fa-code"></i><h3>Web</h3></div>
+    <div class="card"><i class="fas fa-code"></i><h3>Desarrollo Web</h3></div>
     <div class="card"><i class="fas fa-laptop"></i><h3>UI/UX</h3></div>
     <div class="card"><i class="fas fa-database"></i><h3>Backend</h3></div>
   </div>
@@ -341,7 +325,12 @@ footer {
 window.addEventListener("load", () => {
   setTimeout(() => {
     document.getElementById("spacex-loader").classList.add("fade-out");
-  }, 4200);
+  }, 4800);
+});
+
+/* NAVBAR SCROLL */
+window.addEventListener("scroll", () => {
+  document.getElementById("navbar").classList.toggle("scrolled", window.scrollY > 50);
 });
 </script>
 
