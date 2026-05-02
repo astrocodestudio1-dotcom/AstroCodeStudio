@@ -17,10 +17,33 @@ body{
   background:#03050a;
   color:#fff;
   overflow-x:hidden;
-  cursor:none;
 }
 
-/* ===== CANVAS ESTRELLAS ===== */
+/* ===== LOADER ===== */
+#loader{
+  position:fixed;
+  width:100%;
+  height:100vh;
+  background:#000;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+
+#loader img{
+  width:220px;
+  opacity:0;
+  animation:introLogo 4s forwards;
+}
+
+@keyframes introLogo{
+  0%{opacity:0;transform:scale(.6);filter:blur(20px);}
+  60%{opacity:1;transform:scale(1.1);}
+  100%{transform:scale(1);filter:drop-shadow(0 0 30px #00d4ff);}
+}
+
+/* ===== ESTRELLAS ===== */
 #stars{
   position:fixed;
   top:0;
@@ -30,20 +53,6 @@ body{
   z-index:-1;
 }
 
-/* ===== CURSOR ===== */
-.cursor{
-  position:fixed;
-  width:12px;
-  height:12px;
-  background:#00d4ff;
-  border-radius:50%;
-  pointer-events:none;
-  box-shadow:0 0 20px #00d4ff;
-  transform:translate(-50%,-50%);
-  transition:transform .1s;
-  z-index:9999;
-}
-
 /* ===== HEADER ===== */
 header{
   position:fixed;
@@ -51,6 +60,7 @@ header{
   padding:18px 50px;
   display:flex;
   justify-content:space-between;
+  align-items:center;
   backdrop-filter:blur(15px);
   background:rgba(5,7,13,0.6);
   z-index:1000;
@@ -97,6 +107,12 @@ nav a::after{
   transition:.3s;
 }
 nav a:hover::after{width:100%;}
+
+.menu-toggle{
+  display:none;
+  font-size:1.5rem;
+  cursor:pointer;
+}
 
 /* HERO */
 .hero{
@@ -164,18 +180,40 @@ section.show{
   transform:translateY(0) scale(1);
 }
 
-/* CARDS GLASS PRO */
+/* BIENVENIDA */
+.welcome{
+  display:flex;
+  justify-content:center;
+}
+
+.welcome-box{
+  max-width:750px;
+  text-align:center;
+  padding:50px;
+  border-radius:25px;
+  background:rgba(20,25,50,.55);
+  backdrop-filter:blur(25px);
+  box-shadow:0 0 60px rgba(0,212,255,0.2);
+  transform:translateY(50px);
+  opacity:0;
+  transition:1s;
+}
+
+.welcome.show .welcome-box{
+  transform:translateY(0);
+  opacity:1;
+}
+
+/* CARDS NEON */
 .card{
   position:relative;
   background:rgba(20,25,50,.5);
   backdrop-filter:blur(20px);
   padding:30px;
   border-radius:20px;
-  border:1px solid rgba(255,255,255,.05);
   overflow:hidden;
 }
 
-/* NEON BORDE */
 .card::before{
   content:"";
   position:absolute;
@@ -204,6 +242,23 @@ section.show{
   gap:25px;
 }
 
+/* PARTICULAS */
+.particle{
+  position:fixed;
+  width:6px;
+  height:6px;
+  background:#00d4ff;
+  border-radius:50%;
+  animation:particle 1s forwards;
+}
+
+@keyframes particle{
+  to{
+    transform:translate(var(--x),var(--y));
+    opacity:0;
+  }
+}
+
 /* FOOTER */
 footer{
   text-align:center;
@@ -213,7 +268,23 @@ footer{
 
 /* MOBILE */
 @media(max-width:768px){
-  nav{display:none;}
+
+  .menu-toggle{display:block;}
+
+  nav{
+    position:absolute;
+    top:70px;
+    right:20px;
+    background:#0d1224;
+    padding:20px;
+    border-radius:15px;
+    display:none;
+    flex-direction:column;
+  }
+
+  nav a{margin:10px 0;}
+
+  nav.active{display:flex;}
 }
 
 </style>
@@ -221,12 +292,18 @@ footer{
 
 <body>
 
+<!-- LOADER -->
+<div id="loader">
+  <img src="logo.png">
+</div>
+
 <canvas id="stars"></canvas>
-<div class="cursor"></div>
 
 <header>
   <div class="logo">AstroCode</div>
-  <nav>
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+  <nav id="nav">
     <a href="#">Inicio</a>
     <a href="#nosotros">Nosotros</a>
     <a href="#servicios">Servicios</a>
@@ -247,7 +324,14 @@ footer{
 
   <p id="dynamic-text"></p>
 
-  <button class="btn" onclick="scrollToSection()">Bienvenidos</button>
+  <button class="btn" onclick="goToWelcome(event)">Bienvenidos</button>
+</section>
+
+<section id="bienvenida" class="welcome">
+  <div class="welcome-box">
+    <h2>Bienvenido a una nueva experiencia digital</h2>
+    <p>En AstroCode no solo creamos sitios web, diseñamos ecosistemas digitales que conectan, impactan y generan resultados reales.</p>
+  </div>
 </section>
 
 <section id="nosotros">
@@ -258,20 +342,53 @@ footer{
   </div>
 </section>
 
+<section id="servicios">
+  <h2>Servicios</h2>
+  <div class="grid">
+    <div class="card">Desarrollo Web</div>
+    <div class="card">UI/UX</div>
+    <div class="card">Apps</div>
+  </div>
+</section>
+
+<section id="portafolio">
+  <h2>Portafolio</h2>
+  <div class="grid">
+    <div class="card">Proyecto 1</div>
+    <div class="card">Proyecto 2</div>
+  </div>
+</section>
+
+<section id="testimonios">
+  <h2>Testimonios</h2>
+  <div class="grid">
+    <div class="card">"Excelente trabajo"</div>
+    <div class="card">"Muy profesional"</div>
+  </div>
+</section>
+
+<section id="contacto">
+  <h2>Contacto</h2>
+  <p style="text-align:center;">Trabajemos juntos 🚀</p>
+</section>
+
 <footer>
   © 2026 AstroCode Studio — Todos los derechos reservados
 </footer>
 
 <script>
 
-/* ===== CURSOR ===== */
-const cursor=document.querySelector('.cursor');
-document.addEventListener('mousemove',e=>{
-  cursor.style.left=e.clientX+"px";
-  cursor.style.top=e.clientY+"px";
-});
+/* LOADER */
+window.onload=()=>{
+  setTimeout(()=>document.getElementById("loader").style.display="none",4000);
+}
 
-/* ===== ESTRELLAS ===== */
+/* MENU */
+function toggleMenu(){
+  document.getElementById("nav").classList.toggle("active");
+}
+
+/* ESTRELLAS */
 const canvas=document.getElementById('stars');
 const ctx=canvas.getContext('2d');
 canvas.width=innerWidth;
@@ -294,11 +411,11 @@ function draw(){
 }
 draw();
 
-/* ===== TEXTO ===== */
+/* TEXTO DINAMICO */
 const phrases=[
-"Experiencias que inspiran",
-"Soluciones que venden",
-"Tecnología que conecta"
+  "Experiencias que inspiran",
+  "Soluciones que venden",
+  "Tecnología que conecta"
 ];
 let i=0;
 setInterval(()=>{
@@ -306,7 +423,7 @@ setInterval(()=>{
   i=(i+1)%phrases.length;
 },2000);
 
-/* ===== SCROLL APPLE ===== */
+/* SCROLL + ANIMACIONES */
 const sections=document.querySelectorAll("section");
 window.addEventListener("scroll",()=>{
   sections.forEach(sec=>{
@@ -317,8 +434,28 @@ window.addEventListener("scroll",()=>{
   });
 });
 
-function scrollToSection(){
-  window.scrollTo({top:window.innerHeight,behavior:"smooth"});
+/* BIENVENIDA + CHISPAS */
+function goToWelcome(e){
+
+  for(let i=0;i<25;i++){
+    let p=document.createElement("div");
+    p.className="particle";
+
+    p.style.left=e.clientX+"px";
+    p.style.top=e.clientY+"px";
+
+    p.style.setProperty('--x',(Math.random()*250-125)+"px");
+    p.style.setProperty('--y',(Math.random()*250-125)+"px");
+
+    document.body.appendChild(p);
+    setTimeout(()=>p.remove(),1000);
+  }
+
+  document.getElementById("bienvenida").scrollIntoView({behavior:"smooth"});
+
+  setTimeout(()=>{
+    document.querySelector(".welcome").classList.add("show");
+  },400);
 }
 
 </script>
