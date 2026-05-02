@@ -1,127 +1,409 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AstroCode Studio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:'Inter',sans-serif;
+  background:#03050a;
+  color:#fff;
+  overflow-x:hidden;
+}
+
+/* LOADER */
+#loader{
+  position:fixed;
+  width:100%;
+  height:100vh;
+  background:#000;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+#loader img{
+  width:220px;
+  animation:introLogo 4s forwards;
+}
+@keyframes introLogo{
+  0%{opacity:0;transform:scale(.6);filter:blur(20px);}
+  60%{opacity:1;transform:scale(1.1);}
+  100%{transform:scale(1);filter:drop-shadow(0 0 30px #00d4ff);}
+}
+
+/* ESTRELLAS */
+#stars{
+  position:fixed;
+  width:100%;
+  height:100%;
+  z-index:-1;
+}
+
+/* HEADER */
+header{
+  position:fixed;
+  width:100%;
+  padding:18px 50px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  backdrop-filter:blur(15px);
+  background:rgba(5,7,13,0.6);
+  z-index:1000;
+  overflow:hidden;
+}
+
+header::after{
+  content:"";
+  position:absolute;
+  bottom:0;
+  width:200%;
+  height:2px;
+  background:linear-gradient(90deg,transparent,#00d4ff,#00ffe5,#5b8cff,transparent);
+  animation:rgbLine 6s linear infinite;
+}
+@keyframes rgbLine{
+  0%{transform:translateX(-50%)}
+  100%{transform:translateX(0)}
+}
+
+.logo{
+  font-family:'Orbitron';
+  color:#00d4ff;
+  text-shadow:0 0 10px #00d4ff;
+}
+
+nav a{
+  margin-left:25px;
+  color:#aaa;
+  text-decoration:none;
+  position:relative;
+}
+nav a:hover{color:#fff;}
+nav a::after{
+  content:"";
+  position:absolute;
+  bottom:-5px;
+  left:0;
+  width:0;
+  height:2px;
+  background:linear-gradient(90deg,#00d4ff,#00ffe5);
+  transition:.3s;
+}
+nav a:hover::after{width:100%;}
+
+.menu-toggle{display:none;font-size:1.5rem;cursor:pointer;}
+
+/* HERO */
+.hero{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  opacity:0;
+  transform:translateY(40px);
+  transition:1.2s;
+}
+.hero-content img{
+  width:180px;
+  filter:drop-shadow(0 0 20px #00d4ff);
+}
+.hero h1{
+  font-family:'Orbitron';
+  font-size:2.8rem;
+  background:linear-gradient(90deg,#00d4ff,#5b8cff,#00ffe5);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.subtext{max-width:650px;color:#aaa;margin-top:15px;}
+#dynamic-text{color:#00d4ff;margin-top:10px;}
+
+/* BOTON */
+.btn{
+  margin-top:25px;
+  padding:14px 35px;
+  border-radius:40px;
+  border:1px solid rgba(255,255,255,.1);
+  background:rgba(20,25,50,.5);
+  color:#fff;
+  cursor:pointer;
+  transition:.4s;
+}
+.btn:hover{
+  background:linear-gradient(90deg,#00d4ff,#00ffe5,#5b8cff);
+  background-size:300%;
+  animation:rgbBtn 3s linear infinite;
+  color:#000;
+}
+@keyframes rgbBtn{
+  0%{background-position:0%}
+  100%{background-position:100%}
+}
+
+/* SECCIONES */
+section{
+  padding:120px 20px;
+  max-width:1100px;
+  margin:auto;
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s;
+}
+section.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* BIENVENIDA */
+.welcome{
+  display:flex;
+  justify-content:center;
+}
+.welcome-box{
+  max-width:750px;
+  padding:50px;
+  border-radius:25px;
+  background:rgba(20,25,50,.55);
+  backdrop-filter:blur(25px);
+  box-shadow:0 0 60px rgba(0,212,255,0.2);
+  transform:translateY(50px);
+  opacity:0;
+  transition:1s;
+}
+.welcome.show .welcome-box{
+  transform:translateY(0);
+  opacity:1;
+}
+
+/* CARDS */
+.card{
+  position:relative;
+  background:rgba(20,25,50,.5);
+  padding:30px;
+  border-radius:20px;
+}
+.card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  padding:1px;
+  border-radius:20px;
+  background:linear-gradient(120deg,#00d4ff,#00ffe5,#5b8cff,#00d4ff);
+  background-size:300%;
+  animation:neon 6s linear infinite;
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+}
+@keyframes neon{
+  0%{background-position:0%}
+  100%{background-position:100%}
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:25px;
+}
+
+/* PARTICULAS */
+.particle{
+  position:fixed;
+  width:6px;
+  height:6px;
+  background:#00d4ff;
+  border-radius:50%;
+  animation:particle 1s forwards;
+}
+@keyframes particle{
+  to{transform:translate(var(--x),var(--y));opacity:0;}
+}
+
+/* FOOTER */
+footer{text-align:center;padding:40px;color:#777;}
+
+/* MOBILE */
+@media(max-width:768px){
+  .menu-toggle{display:block;}
+  nav{
+    position:absolute;
+    top:70px;
+    right:20px;
+    background:#0d1224;
+    padding:20px;
+    border-radius:15px;
+    display:none;
+    flex-direction:column;
+  }
+  nav.active{display:flex;}
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="loader">
+  <img src="logo.png">
+</div>
+
+<canvas id="stars"></canvas>
+
+<header>
+  <div class="logo">AstroCode</div>
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  <nav id="nav">
+    <a href="#">Inicio</a>
+    <a href="#nosotros">Nosotros</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#portafolio">Portafolio</a>
+    <a href="#testimonios">Testimonios</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <img src="logo.png">
+    <h1>Desarrollamos ideas digitales</h1>
+    <p class="subtext">
+      Transformamos conceptos en experiencias digitales sofisticadas,
+      combinando diseño, tecnología y estrategia para impulsar marcas.
+    </p>
+    <p id="dynamic-text"></p>
+    <button class="btn" onclick="goToWelcome(event)">Bienvenidos</button>
+  </div>
+</section>
+
+<section id="bienvenida" class="welcome">
+  <div class="welcome-box">
+    <h2>Bienvenido a una nueva experiencia digital</h2>
+    <p>En AstroCode no solo creamos sitios web, diseñamos ecosistemas digitales que conectan e impactan.</p>
+  </div>
+</section>
+
+<section id="nosotros">
+  <h2>Nosotros</h2>
+  <div class="grid">
+    <div class="card">Historia de AstroCode</div>
+    <div class="card">Tu perfil</div>
+  </div>
+</section>
+
+<section id="servicios">
+  <h2>Servicios</h2>
+  <div class="grid">
+    <div class="card">Desarrollo Web</div>
+    <div class="card">UI/UX</div>
+    <div class="card">Apps</div>
+  </div>
+</section>
+
+<section id="portafolio">
+  <h2>Portafolio</h2>
+  <div class="grid">
+    <div class="card">Proyecto</div>
+    <div class="card">Proyecto</div>
+  </div>
+</section>
+
+<section id="testimonios">
+  <h2>Testimonios</h2>
+  <div class="grid">
+    <div class="card">"Excelente trabajo"</div>
+    <div class="card">"Muy profesional"</div>
+  </div>
+</section>
+
+<section id="contacto">
+  <h2>Contacto</h2>
+</section>
+
+<footer>
+  © 2026 AstroCode Studio
+</footer>
+
 <script>
 
-/* ===== LOADER + HERO FIX ===== */
+/* LOADER + HERO */
 window.addEventListener("load",()=>{
+  const loader=document.getElementById("loader");
+  const hero=document.querySelector(".hero");
 
-  const loader = document.getElementById("loader");
-  const hero = document.querySelector(".hero");
-
-  setTimeout(()=>{
-    loader.style.opacity = "0";
-    loader.style.transition = "opacity 1s ease";
-  },3000);
+  setTimeout(()=>loader.style.opacity="0",3000);
 
   setTimeout(()=>{
-    loader.style.display = "none";
-
-    // 🔥 ACTIVA HERO (ANTES NO PASABA)
-    hero.style.opacity = "1";
-    hero.style.transform = "translateY(0)";
+    loader.style.display="none";
+    hero.style.opacity="1";
+    hero.style.transform="translateY(0)";
   },4000);
-
 });
 
-
-/* ===== MENU ===== */
+/* MENU */
 function toggleMenu(){
   document.getElementById("nav").classList.toggle("active");
 }
 
-
-/* ===== ESTRELLAS OPTIMIZADAS ===== */
+/* ESTRELLAS */
 const canvas=document.getElementById('stars');
 const ctx=canvas.getContext('2d');
-
-function resize(){
-  canvas.width=innerWidth;
-  canvas.height=innerHeight;
-}
-window.addEventListener("resize",resize);
-resize();
+canvas.width=innerWidth;
+canvas.height=innerHeight;
 
 let stars=[];
 for(let i=0;i<120;i++){
-  stars.push({
-    x:Math.random()*canvas.width,
-    y:Math.random()*canvas.height,
-    s:Math.random()*1.5,
-    sp:Math.random()*0.3+0.05
-  });
+  stars.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height});
 }
-
 function draw(){
   ctx.clearRect(0,0,canvas.width,canvas.height);
-
-  ctx.fillStyle="white";
-
-  stars.forEach(star=>{
-    star.y += star.sp;
-
-    if(star.y>canvas.height){
-      star.y=0;
-      star.x=Math.random()*canvas.width;
-    }
-
-    ctx.fillRect(star.x,star.y,star.s,star.s);
+  stars.forEach(s=>{
+    ctx.fillRect(s.x,s.y,2,2);
+    s.y+=0.2;
+    if(s.y>canvas.height)s.y=0;
   });
-
   requestAnimationFrame(draw);
 }
 draw();
 
-
-/* ===== TEXTO DINÁMICO ===== */
-const phrases=[
-  "Experiencias que inspiran",
-  "Soluciones que venden",
-  "Tecnología que conecta"
-];
-
+/* TEXTO */
+const phrases=["Experiencias que inspiran","Soluciones que venden","Tecnología que conecta"];
 let i=0;
 setInterval(()=>{
   document.getElementById("dynamic-text").textContent=phrases[i];
   i=(i+1)%phrases.length;
-},2200);
+},2000);
 
-
-/* ===== SCROLL PRO (MEJOR QUE EL ANTERIOR) ===== */
-const observer = new IntersectionObserver((entries)=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.classList.add("show");
-    }
+/* SCROLL PRO */
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting)e.target.classList.add("show");
   });
-},{threshold:0.15});
+},{threshold:.15});
+document.querySelectorAll("section:not(.hero)").forEach(s=>observer.observe(s));
 
-document.querySelectorAll("section:not(.hero)").forEach(sec=>{
-  observer.observe(sec);
-});
-
-
-/* ===== BIENVENIDA + CHISPAS ===== */
+/* BOTON + CHISPAS */
 function goToWelcome(e){
-
-  for(let i=0;i<25;i++){
+  for(let i=0;i<20;i++){
     let p=document.createElement("div");
     p.className="particle";
-
     p.style.left=e.clientX+"px";
     p.style.top=e.clientY+"px";
-
-    p.style.setProperty('--x',(Math.random()*250-125)+"px");
-    p.style.setProperty('--y',(Math.random()*250-125)+"px");
-
+    p.style.setProperty('--x',(Math.random()*200-100)+"px");
+    p.style.setProperty('--y',(Math.random()*200-100)+"px");
     document.body.appendChild(p);
     setTimeout(()=>p.remove(),1000);
   }
-
-  const bienvenida = document.getElementById("bienvenida");
-
-  bienvenida.scrollIntoView({behavior:"smooth"});
-
-  setTimeout(()=>{
-    bienvenida.classList.add("show");
-  },400);
+  document.getElementById("bienvenida").scrollIntoView({behavior:"smooth"});
 }
 
 </script>
+
+</body>
+</html>
