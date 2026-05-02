@@ -5,31 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AstroCode Studio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 
-/* ===== RESET ===== */
+/* RESET */
 *{margin:0;padding:0;box-sizing:border-box;}
 
 body{
   font-family:'Inter',sans-serif;
-  background:#05070d;
+  background:#0b0f1a;
   color:#fff;
-  overflow-x:hidden;
-}
-
-/* ===== FONDO ===== */
-body::before{
-  content:"";
-  position:fixed;
-  width:900px;
-  height:900px;
-  background:radial-gradient(circle,#00d4ff15,transparent 70%);
-  top:-300px;
-  left:-200px;
-  filter:blur(120px);
-  z-index:-1;
 }
 
 /* ===== LOADER ===== */
@@ -39,29 +25,37 @@ body::before{
   background:#000;
   display:flex;justify-content:center;align-items:center;
   z-index:9999;
+  perspective:1200px;
 }
 
 .logo-3d img{
-  width:230px;
-  animation:intro 4s forwards;
+  width:240px;
   opacity:0;
+  transform:translateZ(-800px) scale(.4);
+  animation:intro 4.5s forwards;
 }
 
 @keyframes intro{
-  0%{opacity:0;transform:scale(.6);filter:blur(25px);}
-  60%{opacity:1;transform:scale(1.08);}
-  100%{transform:scale(1);filter:drop-shadow(0 0 30px #00d4ff);}
+  0%{opacity:0;transform:translateZ(-1000px) scale(.3);filter:blur(20px);}
+  40%{opacity:1;transform:translateZ(100px) scale(1.1);filter:blur(0);}
+  100%{transform:scale(1);filter:drop-shadow(0 0 40px #00d4ff);}
 }
+
+#spacex-loader.fade-out{
+  animation:fadeOut 1s forwards;
+}
+@keyframes fadeOut{to{opacity:0;visibility:hidden;}}
 
 /* ===== NAV ===== */
 header{
   position:fixed;
   width:100%;
-  padding:18px 50px;
+  padding:15px 40px;
   display:flex;
   justify-content:space-between;
-  backdrop-filter:blur(12px);
+  align-items:center;
   z-index:1000;
+  backdrop-filter:blur(10px);
 }
 
 .logo{
@@ -70,12 +64,13 @@ header{
 }
 
 nav a{
-  margin-left:30px;
-  color:#aaa;
+  margin-left:25px;
   text-decoration:none;
+  color:#ccc;
   font-size:.9rem;
   transition:.3s;
 }
+
 nav a:hover{color:#fff;}
 
 /* ===== HERO ===== */
@@ -89,81 +84,109 @@ nav a:hover{color:#fff;}
   padding:20px;
 }
 
-.hero img{
-  width:180px;
-  margin-bottom:25px;
-  filter:drop-shadow(0 0 25px #00d4ff40);
-}
+.hero img{width:200px;margin-bottom:20px;}
 
+/* TITULO PRO */
 .hero h1{
   font-family:'Orbitron';
-  font-size:2.8rem;
+  font-size:2.7rem;
   background:linear-gradient(90deg,#00d4ff,#5b8cff,#8a2be2);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
 
+/* TEXTO ELEGANTE */
 .subtext{
-  margin-top:20px;
-  max-width:680px;
-  color:#aaa;
-  line-height:1.7;
-}
-
-#dynamic-text{
   margin-top:15px;
-  color:#00d4ff;
-  min-height:20px;
+  max-width:700px;
+  color:#aaa;
+  font-size:1.1rem;
+  line-height:1.6;
 }
 
-/* ===== BOTÓN ===== */
+/* TEXTO IA */
+#dynamic-text{
+  margin-top:12px;
+  color:#00d4ff;
+}
+
+/* BOTÓN ELEGANTE */
 .btn{
-  margin-top:35px;
-  padding:14px 38px;
-  border-radius:50px;
-  border:1px solid #2a2f45;
-  background:#0d1224;
+  margin-top:25px;
+  padding:14px 35px;
+  border-radius:40px;
+  border:1px solid #444;
+  background:transparent;
   color:#fff;
   cursor:pointer;
-  transition:.4s;
+  transition:.3s;
+  position:relative;
+  overflow:hidden;
 }
 
+/* HOVER RGB */
 .btn:hover{
+  border-color:transparent;
   background:linear-gradient(90deg,#00d4ff,#5b8cff,#8a2be2);
   color:#000;
-  box-shadow:0 0 25px rgba(0,212,255,0.3);
+  animation:rgbMove 2s linear infinite;
+}
+
+@keyframes rgbMove{
+  0%{background-position:0%}
+  100%{background-position:200%}
 }
 
 /* ===== SECCIONES ===== */
 section{
-  padding:120px 20px;
+  padding:100px 20px;
   max-width:1100px;
   margin:auto;
 }
 
 h2{
-  text-align:center;
   font-family:'Orbitron';
-  margin-bottom:60px;
+  text-align:center;
+  margin-bottom:40px;
+}
+
+/* ===== NOSOTROS ===== */
+.about{
+  text-align:center;
+  max-width:800px;
+  margin:auto;
+  color:#ccc;
+  line-height:1.7;
 }
 
 /* ===== BIENVENIDA ===== */
 .welcome{
+  min-height:100vh;
   display:flex;
   justify-content:center;
   align-items:center;
+  padding:40px;
+  position:relative;
+}
+
+.welcome::before{
+  content:"";
+  position:absolute;
+  width:600px;height:600px;
+  background:radial-gradient(circle,#00d4ff33,transparent 70%);
+  top:-100px;left:-100px;
+  filter:blur(120px);
 }
 
 .welcome-box{
-  max-width:750px;
+  background:rgba(20,25,50,.6);
+  backdrop-filter:blur(20px);
+  padding:40px;
+  border-radius:20px;
+  max-width:700px;
   text-align:center;
-  padding:50px;
-  border-radius:25px;
-  background:rgba(15,20,40,0.6);
-  backdrop-filter:blur(25px);
   border:1px solid rgba(255,255,255,.05);
-  box-shadow:0 0 60px rgba(0,212,255,0.15);
-  transform:translateY(40px);
+  transform:translateY(60px);
   opacity:0;
   transition:1s;
 }
@@ -173,54 +196,13 @@ h2{
   opacity:1;
 }
 
-.welcome p{
-  color:#ccc;
-  line-height:1.8;
-}
-
-/* ===== NOSOTROS ===== */
-.about-container{
-  display:grid;
-  grid-template-columns:1fr 280px;
-  gap:35px;
-}
-
-.card{
-  background:rgba(15,20,40,0.6);
-  backdrop-filter:blur(20px);
-  padding:40px;
-  border-radius:20px;
-  border:1px solid rgba(255,255,255,.05);
-}
-
-.profile-box{
-  text-align:center;
-}
-
-.profile-box img{
-  width:120px;
-  border-radius:50%;
-  margin-bottom:15px;
-  box-shadow:0 0 25px rgba(0,212,255,.3);
-}
-
-/* ===== PARTICULAS ===== */
-.particle{
-  position:fixed;
-  width:6px;height:6px;
-  background:#00d4ff;
-  border-radius:50%;
-  animation:particle 1s forwards;
-}
-@keyframes particle{
-  to{transform:translate(var(--x),var(--y));opacity:0;}
-}
-
 /* ===== RESPONSIVE ===== */
 @media(max-width:768px){
+
   nav{display:none;}
-  .about-container{grid-template-columns:1fr;}
-  .hero h1{font-size:2rem;}
+  .hero h1{font-size:1.9rem;}
+  .subtext{font-size:1rem;}
+
 }
 
 </style>
@@ -240,6 +222,8 @@ h2{
   <nav>
     <a href="#">Inicio</a>
     <a href="#nosotros">Nosotros</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#portafolio">Portafolio</a>
     <a href="#contacto">Contacto</a>
   </nav>
 </header>
@@ -251,30 +235,21 @@ h2{
   <h1>Desarrollamos ideas digitales</h1>
 
   <p class="subtext">
-    Transformamos ideas en experiencias digitales de alto impacto, donde el diseño, la tecnología
-    y la estrategia se fusionan para crear productos que conectan, evolucionan y generan resultados reales.
+    Transformamos conceptos en experiencias digitales sofisticadas, combinando diseño moderno,
+    tecnología avanzada y estrategia para impulsar el crecimiento de tu marca.
   </p>
 
   <p id="dynamic-text"></p>
 
-  <button class="btn" onclick="goToWelcome(event)">Bienvenidos</button>
+  <button class="btn" onclick="goToWelcome()">Bienvenidos</button>
 </section>
 
 <!-- BIENVENIDA -->
 <section id="bienvenida" class="welcome">
   <div class="welcome-box">
-    <h2>Bienvenido a una nueva experiencia digital</h2>
-
+    <h2>Bienvenido a AstroCode</h2>
     <p>
-      En AstroCode no solo creamos sitios web, diseñamos ecosistemas digitales que conectan,
-      impactan y generan resultados reales.
-    </p>
-
-    <br>
-
-    <p>
-      Nuestro enfoque combina creatividad, tecnología y estrategia para construir soluciones
-      que marcan la diferencia.
+      Creamos soluciones digitales que conectan con las personas, elevan marcas y generan impacto real.
     </p>
   </div>
 </section>
@@ -282,23 +257,11 @@ h2{
 <!-- NOSOTROS -->
 <section id="nosotros">
   <h2>Nosotros</h2>
-
-  <div class="about-container">
-
-    <div class="card">
-      <p>
-        AstroCode Studio nace con la visión de crear soluciones digitales que realmente generen impacto.
-        Más que desarrollar sitios web, buscamos construir experiencias que conecten con las personas
-        y eleven el valor de cada marca.
-      </p>
-    </div>
-
-    <div class="card profile-box">
-      <img src="tu-foto.jpg">
-      <h3>Tu Nombre</h3>
-      <p>Fundador & Developer</p>
-    </div>
-
+  <div class="about">
+    <p>
+      AstroCode Studio es una empresa enfocada en el desarrollo de soluciones tecnológicas modernas,
+      combinando creatividad, diseño y programación para construir productos digitales de alto nivel.
+    </p>
   </div>
 </section>
 
@@ -306,43 +269,27 @@ h2{
 
 /* loader */
 window.onload=()=>{
-  setTimeout(()=>document.getElementById("spacex-loader").style.display="none",4000);
+  setTimeout(()=>{
+    document.getElementById("spacex-loader").classList.add("fade-out");
+  },4500);
 }
 
 /* texto dinámico */
-const phrases = [
-  "Diseñamos experiencias que inspiran confianza",
-  "Construimos soluciones que impulsan negocios",
-  "Creamos tecnología que conecta con personas",
-  "Transformamos ideas en productos digitales reales"
+const phrases=[
+  "Innovación constante",
+  "Diseño que impacta",
+  "Tecnología que evoluciona",
+  "Experiencias que conectan"
 ];
-
-let i = 0;
-
+let i=0;
 setInterval(()=>{
-  document.getElementById("dynamic-text").textContent = phrases[i];
-  i = (i + 1) % phrases.length;
-}, 2500);
+  document.getElementById("dynamic-text").textContent=phrases[i];
+  i=(i+1)%phrases.length;
+},2000);
 
-/* partículas + scroll */
-function goToWelcome(e){
-
-  for(let i=0;i<20;i++){
-    let p=document.createElement("div");
-    p.className="particle";
-
-    p.style.left=e.clientX+"px";
-    p.style.top=e.clientY+"px";
-
-    p.style.setProperty('--x',(Math.random()*200-100)+"px");
-    p.style.setProperty('--y',(Math.random()*200-100)+"px");
-
-    document.body.appendChild(p);
-    setTimeout(()=>p.remove(),1000);
-  }
-
+/* scroll bienvenida */
+function goToWelcome(){
   document.getElementById("bienvenida").scrollIntoView({behavior:"smooth"});
-
   setTimeout(()=>{
     document.querySelector(".welcome").classList.add("show");
   },400);
