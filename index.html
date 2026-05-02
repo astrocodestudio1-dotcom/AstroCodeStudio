@@ -11,10 +11,25 @@
 
 /* ===== RESET ===== */
 *{margin:0;padding:0;box-sizing:border-box;}
+
 body{
   font-family:'Inter',sans-serif;
-  background:#0b0f1a;
+  background:#06090f;
   color:#fff;
+  overflow-x:hidden;
+}
+
+/* ===== FONDO ESPACIAL SUAVE ===== */
+body::before{
+  content:"";
+  position:fixed;
+  width:800px;
+  height:800px;
+  background:radial-gradient(circle,#00d4ff22,transparent 70%);
+  top:-200px;
+  left:-200px;
+  filter:blur(120px);
+  z-index:-1;
 }
 
 /* ===== LOADER ===== */
@@ -24,21 +39,19 @@ body{
   background:#000;
   display:flex;justify-content:center;align-items:center;
   z-index:9999;
-  perspective:1200px;
 }
+
 .logo-3d img{
-  width:220px;
+  width:240px;
+  animation:intro 4s forwards;
   opacity:0;
-  transform:translateZ(-800px) scale(.4);
-  animation:intro 4.5s forwards;
 }
+
 @keyframes intro{
-  0%{opacity:0;transform:translateZ(-1000px) scale(.3);filter:blur(20px);}
-  40%{opacity:1;transform:translateZ(100px) scale(1.1);filter:blur(0);}
-  100%{transform:scale(1);filter:drop-shadow(0 0 40px #00d4ff);}
+  0%{opacity:0;transform:scale(.6);filter:blur(20px);}
+  60%{opacity:1;transform:scale(1.1);}
+  100%{transform:scale(1);filter:drop-shadow(0 0 30px #00d4ff);}
 }
-#spacex-loader.fade-out{animation:fadeOut 1s forwards;}
-@keyframes fadeOut{to{opacity:0;visibility:hidden;}}
 
 /* ===== NAV ===== */
 header{
@@ -47,15 +60,21 @@ header{
   padding:15px 40px;
   display:flex;
   justify-content:space-between;
-  align-items:center;
   backdrop-filter:blur(10px);
   z-index:1000;
 }
-.logo{font-family:'Orbitron';color:#00d4ff;}
+
+.logo{
+  font-family:'Orbitron';
+  color:#00d4ff;
+  letter-spacing:1px;
+}
+
 nav a{
   margin-left:25px;
-  color:#ccc;
+  color:#aaa;
   text-decoration:none;
+  transition:.3s;
 }
 nav a:hover{color:#fff;}
 
@@ -68,95 +87,129 @@ nav a:hover{color:#fff;}
   align-items:center;
   text-align:center;
 }
-.hero img{width:200px;margin-bottom:20px;}
+
+.hero img{
+  width:200px;
+  margin-bottom:20px;
+  filter:drop-shadow(0 0 20px #00d4ff55);
+}
+
 .hero h1{
   font-family:'Orbitron';
-  font-size:2.6rem;
+  font-size:2.7rem;
   background:linear-gradient(90deg,#00d4ff,#5b8cff,#8a2be2);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
-.subtext{
-  max-width:700px;
-  color:#aaa;
-  margin-top:15px;
-}
-#dynamic-text{color:#00d4ff;margin-top:10px;}
 
-/* BOTON */
+/* TEXTO */
+.subtext{
+  margin-top:15px;
+  max-width:650px;
+  color:#aaa;
+  line-height:1.6;
+}
+
+/* BOTÓN PRO */
 .btn{
-  margin-top:25px;
+  margin-top:30px;
   padding:14px 35px;
   border-radius:40px;
-  border:1px solid #444;
-  background:transparent;
+  border:1px solid #333;
+  background:#0f1425;
   color:#fff;
   cursor:pointer;
+  transition:.3s;
+  box-shadow:0 0 0 rgba(0,212,255,0);
 }
+
 .btn:hover{
   background:linear-gradient(90deg,#00d4ff,#5b8cff,#8a2be2);
   color:#000;
+  box-shadow:0 0 20px rgba(0,212,255,0.4);
 }
 
-/* ===== SECCIONES ===== */
-section{padding:100px 20px;max-width:1100px;margin:auto;}
-h2{text-align:center;font-family:'Orbitron';margin-bottom:40px;}
-
-/* ===== CARDS ===== */
+/* ===== CARDS CON VIDA ===== */
 .card{
-  background:rgba(20,25,50,.6);
-  backdrop-filter:blur(20px);
-  padding:25px;
+  background:linear-gradient(145deg,#0f1425,#0a0d18);
+  padding:30px;
   border-radius:20px;
   border:1px solid rgba(255,255,255,.05);
+  transition:.4s;
+  position:relative;
+  overflow:hidden;
 }
 
-/* ===== SERVICIOS ===== */
+.card::before{
+  content:"";
+  position:absolute;
+  width:200%;
+  height:200%;
+  background:radial-gradient(circle,#00d4ff33,transparent 70%);
+  top:-50%;
+  left:-50%;
+  opacity:0;
+  transition:.5s;
+}
+
+.card:hover::before{opacity:1;}
+
+.card:hover{
+  transform:translateY(-10px) scale(1.02);
+}
+
+/* ===== GRID ===== */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:20px;
+  gap:25px;
 }
 
-/* ===== PORTAFOLIO ===== */
-.portfolio img{
-  width:100%;
-  border-radius:15px;
+/* ===== BIENVENIDA ===== */
+.welcome{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:100px 20px;
 }
 
-/* ===== TESTIMONIOS ===== */
-.testimonial{
-  font-size:.95rem;
-  color:#ccc;
+.welcome-box{
+  max-width:700px;
+  text-align:center;
+  padding:40px;
+  border-radius:20px;
+  background:rgba(20,25,50,.6);
+  backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,.05);
+  box-shadow:0 0 40px rgba(0,212,255,.15);
+  transform:translateY(40px);
+  opacity:0;
+  transition:1s;
 }
 
-/* ===== WHATSAPP ===== */
-.whatsapp{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  background:#25D366;
-  color:#fff;
-  padding:15px;
-  border-radius:50%;
-  text-decoration:none;
-  font-size:20px;
+.welcome.show .welcome-box{
+  transform:translateY(0);
+  opacity:1;
 }
 
 /* ===== NOSOTROS ===== */
 .about-container{
   display:grid;
-  grid-template-columns:1fr 300px;
+  grid-template-columns:1fr 280px;
   gap:30px;
 }
+
 .profile-box img{
-  width:100px;border-radius:50%;
+  width:120px;
+  border-radius:50%;
+  margin-bottom:10px;
+  box-shadow:0 0 20px #00d4ff55;
 }
 
 /* ===== PARTICULAS ===== */
 .particle{
   position:fixed;
-  width:5px;height:5px;
+  width:6px;height:6px;
   background:#00d4ff;
   border-radius:50%;
   animation:particle 1s forwards;
@@ -169,6 +222,18 @@ h2{text-align:center;font-family:'Orbitron';margin-bottom:40px;}
 @media(max-width:768px){
   nav{display:none;}
   .about-container{grid-template-columns:1fr;}
+}
+
+section{
+  padding:100px 20px;
+  max-width:1100px;
+  margin:auto;
+}
+
+h2{
+  text-align:center;
+  font-family:'Orbitron';
+  margin-bottom:40px;
 }
 
 </style>
@@ -197,70 +262,52 @@ h2{text-align:center;font-family:'Orbitron';margin-bottom:40px;}
 <section class="hero">
   <img src="logo.png">
   <h1>Desarrollamos ideas digitales</h1>
-  <p class="subtext">Transformamos conceptos en experiencias digitales que impulsan tu negocio.</p>
-  <p id="dynamic-text"></p>
+  <p class="subtext">
+    Transformamos conceptos en experiencias digitales sofisticadas, combinando diseño,
+    tecnología y estrategia para impulsar marcas.
+  </p>
   <button class="btn" onclick="goToWelcome(event)">Bienvenidos</button>
 </section>
 
-<section id="bienvenida">
-  <h2>Bienvenido a una nueva experiencia digital</h2>
-  <p style="text-align:center;max-width:700px;margin:auto;">
-    Diseñamos soluciones que conectan, impactan y generan resultados reales.
-  </p>
+<section id="bienvenida" class="welcome">
+  <div class="welcome-box">
+    <h2>Bienvenido a una nueva experiencia digital</h2>
+    <p>
+      En AstroCode no solo creamos sitios web, diseñamos ecosistemas digitales que conectan,
+      impactan y generan resultados reales.
+    </p>
+    <br>
+    <p>
+      Nuestro enfoque combina creatividad, tecnología y estrategia para construir soluciones
+      que marcan la diferencia.
+    </p>
+  </div>
 </section>
 
 <section id="nosotros">
   <h2>Nosotros</h2>
   <div class="about-container">
     <div class="card">
-      <p>AstroCode Studio nace con la misión de crear experiencias digitales de alto impacto...</p>
+      <p>
+        AstroCode Studio nace de la pasión por crear tecnología que no solo funcione,
+        sino que inspire. Cada proyecto es una oportunidad de construir algo único.
+      </p>
     </div>
+
     <div class="card profile-box">
       <img src="tu-foto.jpg">
       <h3>Tu Nombre</h3>
-      <p>Fundador</p>
+      <p>Fundador & Developer</p>
     </div>
   </div>
 </section>
-
-<section id="servicios">
-  <h2>Servicios</h2>
-  <div class="grid">
-    <div class="card">Desarrollo Web</div>
-    <div class="card">UI/UX</div>
-    <div class="card">Apps</div>
-  </div>
-</section>
-
-<section id="portafolio">
-  <h2>Portafolio</h2>
-  <div class="grid portfolio">
-    <img src="https://via.placeholder.com/400">
-    <img src="https://via.placeholder.com/400">
-  </div>
-</section>
-
-<section id="contacto">
-  <h2>Contacto</h2>
-  <p style="text-align:center;">Contáctanos para trabajar juntos.</p>
-</section>
-
-<a href="https://wa.me/123456789" class="whatsapp">💬</a>
 
 <script>
 
 /* loader */
 window.onload=()=>{
-  setTimeout(()=>document.getElementById("spacex-loader").classList.add("fade-out"),4500);
+  setTimeout(()=>document.getElementById("spacex-loader").style.display="none",4000);
 }
-
-/* texto */
-const phrases=["Innovación","Diseño","Tecnología"];
-let i=0;
-setInterval(()=>{
-  document.getElementById("dynamic-text").textContent=phrases[i];
-  i=(i+1)%phrases.length;
-},2000);
 
 /* partículas */
 function goToWelcome(e){
@@ -274,7 +321,12 @@ function goToWelcome(e){
     document.body.appendChild(p);
     setTimeout(()=>p.remove(),1000);
   }
+
   document.getElementById("bienvenida").scrollIntoView({behavior:"smooth"});
+
+  setTimeout(()=>{
+    document.querySelector(".welcome").classList.add("show");
+  },400);
 }
 
 </script>
