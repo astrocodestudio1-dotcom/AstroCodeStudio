@@ -38,23 +38,27 @@
 
     <!-- 🔹 BASICO -->
     <div class="card package-card">
-      <h3>Básico</h3>
+      <div class="card-content">
 
-      <p class="package-price">$1600 - $2300</p>
+        <h3>Básico</h3>
 
-      <ul class="package-list">
-        <li>✔ Sitio web profesional</li>
-        <li>✔ Diseño moderno</li>
-        <li>✔ Hasta 3 secciones</li>
-        <li>✔ Optimización básica</li>
-        <li>✔ Adaptado a móviles</li>
-        <li>✔ Soporte incluido</li>
-        <li>✔ Tiempo de entrega estándar</li>
-      </ul>
+        <p class="package-price">$1600 - $2300</p>
 
-      <button class="btn package-btn" onclick="goContact()">
-        Elegir plan
-      </button>
+        <ul class="package-list">
+          <li>✔ Sitio web profesional</li>
+          <li>✔ Diseño moderno</li>
+          <li>✔ Hasta 3 secciones</li>
+          <li>✔ Optimización básica</li>
+          <li>✔ Adaptado a móviles</li>
+          <li>✔ Soporte incluido</li>
+          <li>✔ Tiempo de entrega estándar</li>
+        </ul>
+
+        <button class="btn package-btn" onclick="goContact()">
+          Elegir plan
+        </button>
+
+      </div>
     </div>
 
     <!-- 🔥 PRO -->
@@ -62,28 +66,32 @@
 
       <div class="package-badge">RECOMENDADO</div>
 
-      <h3>Pro</h3>
+      <div class="card-content">
 
-      <p class="package-price">$2500 - $4000</p>
+        <h3>Pro</h3>
 
-      <ul class="package-list">
-        <li>✔ Todo lo del plan básico</li>
-        <li>🔥 Diseño premium + animaciones</li>
-        <li>🔥 Experiencia tipo Apple</li>
-        <li>🔥 SEO avanzado</li>
-        <li>🔥 Estrategia de marketing digital</li>
-        <li>🔥 Sesión de fotos profesional</li>
-        <li>🔥 Video promocional</li>
-        <li>🔥 Contenido para redes sociales</li>
-        <li>🔥 Integraciones completas</li>
-        <li>🔥 Soporte prioritario 24/7</li>
-        <li>🔥 Entrega rápida</li>
-        <li>🔥 Escalabilidad futura</li>
-      </ul>
+        <p class="package-price">$2500 - $4000</p>
 
-      <button class="btn package-btn" onclick="goContact()">
-        Quiero este 🚀
-      </button>
+        <ul class="package-list">
+          <li>✔ Todo lo del plan básico</li>
+          <li>🔥 Diseño premium + animaciones</li>
+          <li>🔥 Experiencia tipo Apple</li>
+          <li>🔥 SEO avanzado</li>
+          <li>🔥 Estrategia de marketing digital</li>
+          <li>🔥 Sesión de fotos profesional</li>
+          <li>🔥 Video promocional</li>
+          <li>🔥 Contenido para redes sociales</li>
+          <li>🔥 Integraciones completas</li>
+          <li>🔥 Soporte prioritario 24/7</li>
+          <li>🔥 Entrega rápida</li>
+          <li>🔥 Escalabilidad futura</li>
+        </ul>
+
+        <button class="btn package-btn" onclick="goContact()">
+          Quiero este 🚀
+        </button>
+
+      </div>
     </div>
 
   </div>
@@ -106,7 +114,7 @@ function goContact(){
   window.location.href="index.html#contacto";
 }
 
-/* 🌌 ESTRELLAS (IGUAL QUE INDEX) */
+/* 🌌 ESTRELLAS */
 const canvas = document.getElementById('stars');
 const ctx = canvas.getContext('2d');
 
@@ -125,17 +133,12 @@ for(let i=0;i<150;i++){
 
 function animateStars(){
   ctx.clearRect(0,0,canvas.width,canvas.height);
-
   ctx.fillStyle="white";
 
   stars.forEach(star=>{
     ctx.fillRect(star.x,star.y,star.s,star.s);
-
     star.y += 0.2;
-
-    if(star.y > canvas.height){
-      star.y = 0;
-    }
+    if(star.y > canvas.height) star.y = 0;
   });
 
   requestAnimationFrame(animateStars);
