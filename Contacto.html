@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AstroCode Studio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link rel="Stylesheet" href="Styles.css">
+    
+</head>
+
+<body>
+
+<div id="loader"><img src="logo.png"></div>
+<canvas id="stars"></canvas>
+
+<header>
+<div class="logo">AstroCode | Studio </div>
+<div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+<nav id="nav">
+<a href="#">Inicio</a>
+<a href="#nosotros">Nosotros</a>
+<a href="#servicios">Servicios</a>
+<a href="Paquete.html">Paquetes </a>
+<a href="#portafolio">Portafolio</a>
+<a href="#testimonios">Testimonios</a>
+<a href="#contacto">Contacto</a>
+</nav>
+</header>
+
+<!-- CONTACTO -->
+<section id="contacto">
+<h2>Contacto</h2>
+
+<form class="contact-form" action="https://formspree.io/f/xblaqzoy" method="POST">
+<input type="text" name="name" placeholder="Nombre" required>
+<input type="email" name="email" placeholder="Correo" required>
+<textarea name="message" placeholder="Mensaje" required></textarea>
+<button class="btn">Enviar</button>
+</form>
+
+</section>
