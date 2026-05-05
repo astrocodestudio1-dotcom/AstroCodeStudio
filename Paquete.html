@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paquetes | AstroCode Studio</title>
+
+<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<header>
+  <div class="logo">AstroCode</div>
+
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+  <nav id="nav">
+    <a href="index.html">Inicio</a>
+    <a href="index.html#servicios">Servicios</a>
+   <a href="#paquetes">Paquetes </a>
+   <a href="#portafolio">Portafolio</a>
+  <a href="#testimonios">Testimonios</a>
+  <a href="#contacto">Contacto</a>
+  </nav>
+</header>
+
+<section class="packages">
+
+  <h2>Nuestros Paquetes</h2>
+  <p class="subtext">
+    Diseñados para impulsar tu negocio con tecnología y estrategia
+  </p>
+
+  <div class="grid">
+
+    <!-- BASICO -->
+    <div class="card package-card">
+      <h3>Básico</h3>
+      <p class="package-price">$99</p>
+
+      <ul class="package-list">
+        <li>✔ Sitio web profesional</li>
+        <li>✔ Diseño moderno</li>
+        <li>✔ Hasta 3 secciones</li>
+        <li>✔ Optimización básica</li>
+        <li>✔ Soporte incluido</li>
+        <li>✔ Respuesta estándar</li>
+      </ul>
+
+      <button class="btn package-btn" onclick="goContact()">
+        Elegir plan
+      </button>
+    </div>
+
+    <!-- PRO -->
+    <div class="card package-card package-pro">
+
+      <div class="package-badge">RECOMENDADO</div>
+
+      <h3>Pro</h3>
+      <p class="package-price">$299</p>
+
+      <ul class="package-list">
+        <li>✔ Todo lo del plan básico</li>
+        <li>🔥 Diseño premium y animaciones</li>
+        <li>🔥 SEO avanzado</li>
+        <li>🔥 Estrategia de marketing digital</li>
+        <li>🔥 Sesión de fotos profesional</li>
+        <li>🔥 Video promocional</li>
+        <li>🔥 Contenido para redes sociales</li>
+        <li>🔥 Integraciones completas</li>
+        <li>🔥 Soporte prioritario</li>
+        <li>🔥 Seguimiento continuo</li>
+      </ul>
+
+      <button class="btn package-btn" onclick="goContact()">
+        Quiero este 🚀
+      </button>
+    </div>
+
+  </div>
+
+</section>
+
+<footer>
+© 2026 AstroCode Studio — Todos los derechos reservados
+</footer>
+
+<script>
+function toggleMenu(){
+  document.getElementById("nav").classList.toggle("active");
+}
+
+function goContact(){
+  window.location.href="index.html#contacto";
+}
+</script>
+
+</body>
+</html>
