@@ -9,34 +9,42 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 
-<body >
+<body>
+
+<!-- 🌌 ESTRELLAS -->
+<canvas id="stars"></canvas>
+
 <header>
-  <div class="logo">AstroCode | Studio </div>
+  <div class="logo">AstroCode | Studio</div>
 
   <div class="menu-toggle" onclick="toggleMenu()">☰</div>
 
   <nav id="nav">
     <a href="index.html">Inicio</a>
     <a href="index.html#servicios">Servicios</a>
-   <a href="#paquetes">Paquetes </a>
-   <a href="#portafolio">Portafolio</a>
-  <a href="#testimonios">Testimonios</a>
-  <a href="#contacto">Contacto</a>
+    <a href="paquetes.html">Paquetes</a>
+    <a href="index.html#portafolio">Portafolio</a>
+    <a href="index.html#testimonios">Testimonios</a>
+    <a href="index.html#contacto">Contacto</a>
   </nav>
 </header>
 
-<section class="packages">
+<!-- 🚀 PAQUETES -->
+<section class="packages show">
 
   <h2>Nuestros Paquetes</h2>
+
   <p class="subtext">
-    Diseñados para impulsar tu negocio con tecnología y estrategia
+    Soluciones diseñadas para escalar tu negocio con tecnología,
+    diseño estratégico y una presencia digital que realmente convierte.
   </p>
 
   <div class="grid">
 
-    <!-- BASICO -->
+    <!-- 🔹 BASICO -->
     <div class="card package-card">
       <h3>Básico</h3>
+
       <p class="package-price">$99</p>
 
       <ul class="package-list">
@@ -44,8 +52,9 @@
         <li>✔ Diseño moderno</li>
         <li>✔ Hasta 3 secciones</li>
         <li>✔ Optimización básica</li>
+        <li>✔ Adaptado a móviles</li>
         <li>✔ Soporte incluido</li>
-        <li>✔ Respuesta estándar</li>
+        <li>✔ Tiempo de entrega estándar</li>
       </ul>
 
       <button class="btn package-btn" onclick="goContact()">
@@ -53,25 +62,28 @@
       </button>
     </div>
 
-    <!-- PRO -->
+    <!-- 🔥 PRO -->
     <div class="card package-card package-pro">
 
       <div class="package-badge">RECOMENDADO</div>
 
       <h3>Pro</h3>
+
       <p class="package-price">$299</p>
 
       <ul class="package-list">
         <li>✔ Todo lo del plan básico</li>
-        <li>🔥 Diseño premium y animaciones</li>
+        <li>🔥 Diseño premium + animaciones</li>
+        <li>🔥 Experiencia tipo Apple</li>
         <li>🔥 SEO avanzado</li>
         <li>🔥 Estrategia de marketing digital</li>
         <li>🔥 Sesión de fotos profesional</li>
         <li>🔥 Video promocional</li>
         <li>🔥 Contenido para redes sociales</li>
         <li>🔥 Integraciones completas</li>
-        <li>🔥 Soporte prioritario</li>
-        <li>🔥 Seguimiento continuo</li>
+        <li>🔥 Soporte prioritario 24/7</li>
+        <li>🔥 Entrega rápida</li>
+        <li>🔥 Escalabilidad futura</li>
       </ul>
 
       <button class="btn package-btn" onclick="goContact()">
@@ -88,13 +100,63 @@
 </footer>
 
 <script>
+
+/* MENU */
 function toggleMenu(){
   document.getElementById("nav").classList.toggle("active");
 }
 
+/* REDIRECCIÓN */
 function goContact(){
   window.location.href="index.html#contacto";
 }
+
+/* 🌌 ESTRELLAS (IGUAL QUE INDEX) */
+const canvas = document.getElementById('stars');
+const ctx = canvas.getContext('2d');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let stars = [];
+
+for(let i=0;i<150;i++){
+  stars.push({
+    x:Math.random()*canvas.width,
+    y:Math.random()*canvas.height,
+    s:Math.random()*2
+  });
+}
+
+function animateStars(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  ctx.fillStyle="white";
+
+  stars.forEach(star=>{
+    ctx.fillRect(star.x,star.y,star.s,star.s);
+
+    star.y += 0.2;
+
+    if(star.y > canvas.height){
+      star.y = 0;
+    }
+  });
+
+  requestAnimationFrame(animateStars);
+}
+
+setTimeout(()=>{
+  canvas.style.opacity = 1;
+  animateStars();
+},800);
+
+/* RESPONSIVE CANVAS */
+window.addEventListener('resize',()=>{
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+
 </script>
 
 </body>
