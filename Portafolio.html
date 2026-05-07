@@ -3,46 +3,234 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AstroCode Studio</title>
+
+<title>Portafolio | AstroCode Studio</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-<link rel="Stylesheet" href="Styles.css">
-    
+<link rel="stylesheet" href="Styles.css">
+
 </head>
 
 <body>
 
-<div id="loader"><img src="logo.png"></div>
+<!-- 🌌 ESTRELLAS -->
 <canvas id="stars"></canvas>
 
+<!-- HEADER -->
 <header>
-<div class="logo">AstroCode | Studio </div>
+
+<div class="logo">AstroCode | Studio</div>
+
 <div class="menu-toggle" onclick="toggleMenu()">☰</div>
 
 <nav id="nav">
 <a href="index.html">Inicio</a>
-<a href="Nosotros.html">Nosotros</a>
-<a href="Servicios.html">Servicios</a>
-<a href="Paquete.html">Paquetes </a>
-<a href="Portafolio.html">Portafolio</a>
-<a href="Testimonios.html">Testimonios</a>
-<a href="Contacto.html">Contacto</a>
+<a href="nosotros.html">Nosotros</a>
+<a href="servicios.html">Servicios</a>
+<a href="paquetes.html">Paquetes</a>
+<a href="portafolio.html">Portafolio</a>
+<a href="testimonios.html">Testimonios</a>
+<a href="contacto.html">Contacto</a>
 </nav>
+
 </header>
-    
 
-<!-- PORTAFOLIO -->
-<section id="portafolio">
-<h2>Portafolio</h2>
+<!-- 🚀 PORTAFOLIO -->
+<section class="show">
 
-<div class="carousel">
-<div class="slides">
-<div class="slide"><img src="https://picsum.photos/800/400?1"></div>
-<div class="slide"><img src="https://picsum.photos/800/400?2"></div>
-<div class="slide"><img src="https://picsum.photos/800/400?3"></div>
+<h2 style="text-align:center;">Nuestro Portafolio</h2>
+
+<p class="subtext" style="text-align:center; margin:auto;">
+Cada proyecto representa creatividad, innovación y experiencias digitales
+diseñadas para impactar visualmente.
+</p>
+
+<!-- CAROUSEL -->
+<div class="carousel" style="margin-top:50px;">
+
+<div class="slides" id="slides">
+
+<!-- PROYECTO 1 -->
+<div class="slide">
+<div class="card">
+
+<img src="https://picsum.photos/1200/600?1"
+style="width:100%; border-radius:20px; margin-bottom:20px;">
+
+<h3>Landing Page Premium</h3>
+
+<p style="margin-top:10px;color:#aaa;">
+Diseño moderno y elegante enfocado en conversión,
+branding y experiencia visual.
+</p>
+
 </div>
-<div class="dots"></div>
+</div>
+
+<!-- PROYECTO 2 -->
+<div class="slide">
+<div class="card">
+
+<img src="https://picsum.photos/1200/600?2"
+style="width:100%; border-radius:20px; margin-bottom:20px;">
+
+<h3>Diseño UI/UX</h3>
+
+<p style="margin-top:10px;color:#aaa;">
+Interfaces intuitivas con estética futurista
+y experiencia premium para usuarios.
+</p>
+
+</div>
+</div>
+
+<!-- PROYECTO 3 -->
+<div class="slide">
+<div class="card">
+
+<img src="https://picsum.photos/1200/600?3"
+style="width:100%; border-radius:20px; margin-bottom:20px;">
+
+<h3>Marketing Visual</h3>
+
+<p style="margin-top:10px;color:#aaa;">
+Contenido visual profesional para redes sociales,
+marcas y negocios digitales.
+</p>
+
+</div>
+</div>
+
+</div>
+
+<!-- DOTS -->
+<div class="dots" id="dots"></div>
+
 </div>
 
 </section>
+
+<!-- FOOTER -->
+<footer>
+© 2026 AstroCode Studio — Todos los derechos reservados
+</footer>
+
+<script>
+
+/* MENU MOBILE */
+function toggleMenu(){
+document.getElementById("nav").classList.toggle("active");
+}
+
+/* 🌌 ESTRELLAS */
+const canvas = document.getElementById('stars');
+const ctx = canvas.getContext('2d');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let stars = [];
+
+for(let i=0;i<120;i++){
+
+stars.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+s:Math.random()*2
+});
+
+}
+
+function animateStars(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+ctx.fillStyle="white";
+
+stars.forEach(star=>{
+
+ctx.fillRect(star.x,star.y,star.s,star.s);
+
+star.y += 0.2;
+
+if(star.y > canvas.height){
+star.y = 0;
+}
+
+});
+
+requestAnimationFrame(animateStars);
+
+}
+
+animateStars();
+
+/* RESPONSIVE */
+window.addEventListener('resize',()=>{
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+});
+
+/* 🎠 CAROUSEL */
+const slides = document.getElementById("slides");
+const dotsContainer = document.getElementById("dots");
+
+const totalSlides = slides.children.length;
+
+let index = 0;
+
+/* DOTS */
+for(let i=0;i<totalSlides;i++){
+
+const dot = document.createElement("span");
+
+if(i===0){
+dot.classList.add("active");
+}
+
+dot.addEventListener("click",()=>{
+
+index = i;
+updateCarousel();
+
+});
+
+dotsContainer.appendChild(dot);
+
+}
+
+const dots = dotsContainer.children;
+
+/* UPDATE */
+function updateCarousel(){
+
+slides.style.transform = `translateX(-${index * 100}%)`;
+
+for(let d of dots){
+d.classList.remove("active");
+}
+
+dots[index].classList.add("active");
+
+}
+
+/* AUTO */
+setInterval(()=>{
+
+index++;
+
+if(index >= totalSlides){
+index = 0;
+}
+
+updateCarousel();
+
+},5000);
+
+</script>
+
+</body>
+</html>
