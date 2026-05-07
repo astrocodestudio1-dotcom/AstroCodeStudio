@@ -3,45 +3,131 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AstroCode Studio</title>
+
+<title>Nosotros | AstroCode Studio</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="Styles.css">
 
-<link rel="Stylesheet" href="Styles.css">
-    
 </head>
 
 <body>
 
-<div id="loader"><img src="logo.png"></div>
+<!-- 🌌 ESTRELLAS -->
 <canvas id="stars"></canvas>
 
+<!-- HEADER -->
 <header>
-<div class="logo">AstroCode | Studio </div>
-<div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  <div class="logo">AstroCode | Studio</div>
 
-<nav id="nav">
-<a href="index.html">Inicio</a>
-<a href="Nosotros.html">Nosotros</a>
-<a href="Servicios.html">Servicios</a>
-<a href="Paquete.html">Paquetes </a>
-<a href="Portafolio.html">Portafolio</a>
-<a href="Testimonios.html">Testimonios</a>
-<a href="Contacto.html">Contacto</a>
-</nav>
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+  <nav id="nav">
+    <a href="index.html">Inicio</a>
+    <a href="nosotros.html">Nosotros</a>
+    <a href="servicios.html">Servicios</a>
+    <a href="paquetes.html">Paquetes</a>
+    <a href="portafolio.html">Portafolio</a>
+    <a href="testimonios.html">Testimonios</a>
+    <a href="contacto.html">Contacto</a>
+  </nav>
 </header>
 
-<!-- NOSOTROS -->
-<section id="nosotros">
-<h2>Nosotros</h2>
-<div class="grid">
-<div class="card">
-<h3>Historia</h3>
-<p>AstroCode nació con la idea de transformar la manera en que las marcas se presentan digitalmente.</p>
-</div>
-<div class="card">
-<h3>Fundador</h3>
-<p>Tu Nombre — Desarrollador & Diseñador</p>
-</div>
-</div>
+<!-- CONTENIDO -->
+<section class="show">
+
+  <h2 style="text-align:center;">Nosotros</h2>
+
+  <p class="subtext" style="text-align:center; margin:auto;">
+    Creamos experiencias digitales que conectan marcas con personas, combinando creatividad,
+    tecnología y estrategia para generar impacto real.
+  </p>
+
+  <div class="grid">
+
+    <!-- HISTORIA -->
+    <div class="card">
+      <h3>Nuestra Historia</h3>
+      <p>
+        AstroCode Studio nació con una visión clara: llevar los negocios al siguiente nivel digital.
+        No solo desarrollamos sitios web, construimos presencia, identidad y resultados.
+        Cada proyecto es una oportunidad para innovar y marcar la diferencia.
+      </p>
+    </div>
+
+    <!-- FUNDADOR -->
+    <div class="card">
+      <h3>Fundador</h3>
+      <p>
+        <strong>Tu Nombre</strong><br>
+        Desarrollador & Diseñador Digital
+      </p>
+
+      <p style="margin-top:10px; color:#aaa;">
+        Apasionado por la tecnología, el diseño y la creación de experiencias digitales únicas.
+        AstroCode representa la combinación de visión, creatividad y ejecución.
+      </p>
+    </div>
+
+  </div>
+
 </section>
+
+<!-- FOOTER -->
+<footer>
+  © 2026 AstroCode Studio — Todos los derechos reservados
+</footer>
+
+<script>
+
+/* MENU MOBILE */
+function toggleMenu(){
+  document.getElementById("nav").classList.toggle("active");
+}
+
+/* 🌌 ESTRELLAS */
+const canvas = document.getElementById('stars');
+const ctx = canvas.getContext('2d');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let stars = [];
+
+for(let i=0;i<120;i++){
+  stars.push({
+    x:Math.random()*canvas.width,
+    y:Math.random()*canvas.height,
+    s:Math.random()*2
+  });
+}
+
+function animateStars(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  ctx.fillStyle="white";
+
+  stars.forEach(star=>{
+    ctx.fillRect(star.x,star.y,star.s,star.s);
+    star.y += 0.2;
+
+    if(star.y > canvas.height){
+      star.y = 0;
+    }
+  });
+
+  requestAnimationFrame(animateStars);
+}
+
+animateStars();
+
+/* RESPONSIVE */
+window.addEventListener('resize',()=>{
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+
+</script>
+
+</body>
+</html>
