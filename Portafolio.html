@@ -1,102 +1,141 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AstroCode Studio</title>
 
+<title>Portafolio | AstroCode Studio</title>
+
+<!-- FAVICON -->
 <link rel="icon" type="image/png" href="logo.png">
+
+<!-- FUENTES -->
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-<link rel="Stylesheet" href="Styles.css">
-    
+<!-- CSS -->
+<link rel="stylesheet" href="Styles.css">
+
 </head>
 
 <body>
 
-<div id="loader"><img src="logo.png"></div>
+<!-- 🌌 ESTRELLAS -->
 <canvas id="stars"></canvas>
 
+<!-- HEADER -->
 <header>
-<div class="logo">AstroCode | Studio </div>
+
+<div class="logo">AstroCode | Studio</div>
+
 <div class="menu-toggle" onclick="toggleMenu()">☰</div>
 
 <nav id="nav">
 <a href="index.html">Inicio</a>
 <a href="Nosotros.html">Nosotros</a>
 <a href="Servicios.html">Servicios</a>
-<a href="Paquete.html">Paquetes </a>
+<a href="Paquete.html">Paquetes</a>
 <a href="Portafolio.html">Portafolio</a>
 <a href="Testimonios.html">Testimonios</a>
 <a href="Contacto.html">Contacto</a>
 </nav>
-</header>
 
+</header>
 
 <!-- 🚀 PORTAFOLIO -->
 <section class="show">
 
-<h2 style="text-align:center;">Nuestro Portafolio</h2>
+<h2 style="text-align:center;">
+Nuestro Portafolio
+</h2>
 
 <p class="subtext" style="text-align:center; margin:auto;">
 Cada proyecto representa creatividad, innovación y experiencias digitales
 diseñadas para impactar visualmente.
 </p>
 
-<!-- CAROUSEL -->
+<!-- 🎠 CAROUSEL -->
 <div class="carousel" style="margin-top:50px;">
 
 <div class="slides" id="slides">
 
-<!-- PROYECTO 1 -->
+<!-- PROYECTO -->
 <div class="slide">
+
 <div class="card">
 
-<img src="https://picsum.photos/1200/600?1"
-style="width:100%; border-radius:20px; margin-bottom:20px;">
+<img
+src="https://picsum.photos/1200/600?1"
+style="
+width:100%;
+border-radius:20px;
+margin-bottom:20px;
+object-fit:cover;
+"
+>
 
 <h3>Landing Page Premium</h3>
 
-<p style="margin-top:10px;color:#aaa;">
-Diseño moderno y elegante enfocado en conversión,
-branding y experiencia visual.
+<p style="margin-top:10px; color:#aaa;">
+Diseño moderno y elegante enfocado en branding,
+experiencia visual y conversión.
 </p>
 
 </div>
+
 </div>
 
-<!-- PROYECTO 2 -->
+<!-- PROYECTO -->
 <div class="slide">
+
 <div class="card">
 
-<img src="https://picsum.photos/1200/600?2"
-style="width:100%; border-radius:20px; margin-bottom:20px;">
+<img
+src="https://picsum.photos/1200/600?2"
+style="
+width:100%;
+border-radius:20px;
+margin-bottom:20px;
+object-fit:cover;
+"
+>
 
 <h3>Diseño UI/UX</h3>
 
-<p style="margin-top:10px;color:#aaa;">
+<p style="margin-top:10px; color:#aaa;">
 Interfaces intuitivas con estética futurista
 y experiencia premium para usuarios.
 </p>
 
 </div>
+
 </div>
 
-<!-- PROYECTO 3 -->
+<!-- PROYECTO -->
 <div class="slide">
+
 <div class="card">
 
-<img src="https://picsum.photos/1200/600?3"
-style="width:100%; border-radius:20px; margin-bottom:20px;">
+<img
+src="https://picsum.photos/1200/600?3"
+style="
+width:100%;
+border-radius:20px;
+margin-bottom:20px;
+object-fit:cover;
+"
+>
 
 <h3>Marketing Visual</h3>
 
-<p style="margin-top:10px;color:#aaa;">
+<p style="margin-top:10px; color:#aaa;">
 Contenido visual profesional para redes sociales,
-marcas y negocios digitales.
+negocios y marcas digitales.
 </p>
 
 </div>
+
 </div>
 
 </div>
@@ -115,12 +154,18 @@ marcas y negocios digitales.
 
 <script>
 
-/* MENU MOBILE */
+/* =========================
+   MENU MOBILE
+========================= */
+
 function toggleMenu(){
 document.getElementById("nav").classList.toggle("active");
 }
 
-/* 🌌 ESTRELLAS */
+/* =========================
+   ESTRELLAS
+========================= */
+
 const canvas = document.getElementById('stars');
 const ctx = canvas.getContext('2d');
 
@@ -129,12 +174,12 @@ canvas.height = window.innerHeight;
 
 let stars = [];
 
-for(let i=0;i<120;i++){
+for(let i = 0; i < 120; i++){
 
 stars.push({
-x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-s:Math.random()*2
+x: Math.random() * canvas.width,
+y: Math.random() * canvas.height,
+s: Math.random() * 2
 });
 
 }
@@ -143,11 +188,11 @@ function animateStars(){
 
 ctx.clearRect(0,0,canvas.width,canvas.height);
 
-ctx.fillStyle="white";
+ctx.fillStyle = "white";
 
 stars.forEach(star=>{
 
-ctx.fillRect(star.x,star.y,star.s,star.s);
+ctx.fillRect(star.x, star.y, star.s, star.s);
 
 star.y += 0.2;
 
@@ -161,9 +206,14 @@ requestAnimationFrame(animateStars);
 
 }
 
+canvas.style.opacity = 1;
+
 animateStars();
 
-/* RESPONSIVE */
+/* =========================
+   RESPONSIVE
+========================= */
+
 window.addEventListener('resize',()=>{
 
 canvas.width = window.innerWidth;
@@ -171,7 +221,10 @@ canvas.height = window.innerHeight;
 
 });
 
-/* 🎠 CAROUSEL */
+/* =========================
+   CAROUSEL
+========================= */
+
 const slides = document.getElementById("slides");
 const dotsContainer = document.getElementById("dots");
 
@@ -180,17 +233,19 @@ const totalSlides = slides.children.length;
 let index = 0;
 
 /* DOTS */
-for(let i=0;i<totalSlides;i++){
+
+for(let i = 0; i < totalSlides; i++){
 
 const dot = document.createElement("span");
 
-if(i===0){
+if(i === 0){
 dot.classList.add("active");
 }
 
 dot.addEventListener("click",()=>{
 
 index = i;
+
 updateCarousel();
 
 });
@@ -202,6 +257,7 @@ dotsContainer.appendChild(dot);
 const dots = dotsContainer.children;
 
 /* UPDATE */
+
 function updateCarousel(){
 
 slides.style.transform = `translateX(-${index * 100}%)`;
@@ -215,6 +271,7 @@ dots[index].classList.add("active");
 }
 
 /* AUTO */
+
 setInterval(()=>{
 
 index++;
