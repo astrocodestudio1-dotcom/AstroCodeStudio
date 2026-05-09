@@ -1,42 +1,54 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AstroCode Studio</title>
 
+<title>Servicios | AstroCode Studio</title>
+
+<!-- FAVICON -->
 <link rel="icon" type="image/png" href="logo.png">
+
+<!-- FUENTES -->
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-<link rel="Stylesheet" href="Styles.css">
-    
+<!-- CSS -->
+<link rel="stylesheet" href="Styles.css">
+
 </head>
 
 <body>
 
-<div id="loader"><img src="logo.png"></div>
+<!-- 🌌 ESTRELLAS -->
 <canvas id="stars"></canvas>
 
+<!-- HEADER -->
 <header>
-<div class="logo">AstroCode | Studio </div>
+
+<div class="logo">AstroCode | Studio</div>
+
 <div class="menu-toggle" onclick="toggleMenu()">☰</div>
 
 <nav id="nav">
 <a href="index.html">Inicio</a>
 <a href="Nosotros.html">Nosotros</a>
 <a href="Servicios.html">Servicios</a>
-<a href="Paquete.html">Paquetes </a>
+<a href="Paquete.html">Paquetes</a>
 <a href="Portafolio.html">Portafolio</a>
 <a href="Testimonios.html">Testimonios</a>
 <a href="Contacto.html">Contacto</a>
 </nav>
-</header>
 
+</header>
 
 <!-- 🚀 SERVICIOS -->
 <section class="show">
 
-<h2 style="text-align:center;">Nuestros Servicios</h2>
+<h2 style="text-align:center;">
+Nuestros Servicios
+</h2>
 
 <p class="subtext" style="text-align:center; margin:auto;">
 Creamos soluciones digitales modernas, estratégicas y visualmente impactantes
@@ -45,75 +57,75 @@ para llevar marcas y negocios al siguiente nivel.
 
 <div class="grid">
 
-<!-- SERVICIO 1 -->
+<!-- SERVICIO -->
 <div class="card">
 
 <h3>🌐 Desarrollo Web</h3>
 
-<p style="margin-top:15px;color:#aaa;">
+<p style="margin-top:15px; color:#aaa;">
 Diseñamos y desarrollamos sitios web modernos,
 rápidos y totalmente responsivos para empresas,
-marcas personales y negocios.
+negocios y marcas personales.
 </p>
 
 </div>
 
-<!-- SERVICIO 2 -->
+<!-- SERVICIO -->
 <div class="card">
 
 <h3>🎨 Diseño UI/UX</h3>
 
-<p style="margin-top:15px;color:#aaa;">
-Creamos interfaces elegantes e intuitivas enfocadas
-en mejorar la experiencia del usuario y aumentar conversiones.
+<p style="margin-top:15px; color:#aaa;">
+Creamos interfaces elegantes, intuitivas y enfocadas
+en mejorar la experiencia del usuario.
 </p>
 
 </div>
 
-<!-- SERVICIO 3 -->
+<!-- SERVICIO -->
 <div class="card">
 
 <h3>📱 Aplicaciones Web</h3>
 
-<p style="margin-top:15px;color:#aaa;">
+<p style="margin-top:15px; color:#aaa;">
 Desarrollamos aplicaciones dinámicas y funcionales
-adaptadas a las necesidades de cada proyecto.
+adaptadas a cada necesidad.
 </p>
 
 </div>
 
-<!-- SERVICIO 4 -->
+<!-- SERVICIO -->
 <div class="card">
 
 <h3>🚀 Marketing Digital</h3>
 
-<p style="margin-top:15px;color:#aaa;">
-Impulsamos tu presencia online mediante estrategias
-digitales, posicionamiento y contenido visual profesional.
+<p style="margin-top:15px; color:#aaa;">
+Impulsamos tu presencia online mediante estrategias,
+contenido visual y posicionamiento digital.
 </p>
 
 </div>
 
-<!-- SERVICIO 5 -->
+<!-- SERVICIO -->
 <div class="card">
 
 <h3>📸 Foto & Video Profesional</h3>
 
-<p style="margin-top:15px;color:#aaa;">
+<p style="margin-top:15px; color:#aaa;">
 Creamos contenido visual premium para negocios,
-marcas, productos y redes sociales.
+productos y redes sociales.
 </p>
 
 </div>
 
-<!-- SERVICIO 6 -->
+<!-- SERVICIO -->
 <div class="card">
 
 <h3>⚡ Optimización & SEO</h3>
 
-<p style="margin-top:15px;color:#aaa;">
-Optimizamos tu sitio para mejorar velocidad,
-rendimiento y posicionamiento en buscadores.
+<p style="margin-top:15px; color:#aaa;">
+Mejoramos velocidad, rendimiento y posicionamiento
+para maximizar resultados.
 </p>
 
 </div>
@@ -129,12 +141,18 @@ rendimiento y posicionamiento en buscadores.
 
 <script>
 
-/* MENU MOBILE */
+/* =========================
+   MENU MOBILE
+========================= */
+
 function toggleMenu(){
 document.getElementById("nav").classList.toggle("active");
 }
 
-/* 🌌 ESTRELLAS */
+/* =========================
+   ESTRELLAS
+========================= */
+
 const canvas = document.getElementById('stars');
 const ctx = canvas.getContext('2d');
 
@@ -143,12 +161,12 @@ canvas.height = window.innerHeight;
 
 let stars = [];
 
-for(let i=0;i<120;i++){
+for(let i = 0; i < 120; i++){
 
 stars.push({
-x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-s:Math.random()*2
+x: Math.random() * canvas.width,
+y: Math.random() * canvas.height,
+s: Math.random() * 2
 });
 
 }
@@ -157,11 +175,11 @@ function animateStars(){
 
 ctx.clearRect(0,0,canvas.width,canvas.height);
 
-ctx.fillStyle="white";
+ctx.fillStyle = "white";
 
 stars.forEach(star=>{
 
-ctx.fillRect(star.x,star.y,star.s,star.s);
+ctx.fillRect(star.x, star.y, star.s, star.s);
 
 star.y += 0.2;
 
@@ -175,9 +193,14 @@ requestAnimationFrame(animateStars);
 
 }
 
+canvas.style.opacity = 1;
+
 animateStars();
 
-/* RESPONSIVE */
+/* =========================
+   RESPONSIVE
+========================= */
+
 window.addEventListener('resize',()=>{
 
 canvas.width = window.innerWidth;
