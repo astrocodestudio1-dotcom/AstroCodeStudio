@@ -1,54 +1,66 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AstroCode Studio</title>
 
+<title>Contacto | AstroCode Studio</title>
+
+<!-- FAVICON -->
 <link rel="icon" type="image/png" href="logo.png">
+
+<!-- FUENTES -->
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-<link rel="Stylesheet" href="Styles.css">
-    
+<!-- CSS -->
+<link rel="stylesheet" href="Styles.css">
+
 </head>
 
 <body>
 
-<div id="loader"><img src="logo.png"></div>
+<!-- 🌌 ESTRELLAS -->
 <canvas id="stars"></canvas>
 
+<!-- HEADER -->
 <header>
-<div class="logo">AstroCode | Studio </div>
+
+<div class="logo">AstroCode | Studio</div>
+
 <div class="menu-toggle" onclick="toggleMenu()">☰</div>
 
 <nav id="nav">
 <a href="index.html">Inicio</a>
 <a href="Nosotros.html">Nosotros</a>
 <a href="Servicios.html">Servicios</a>
-<a href="Paquete.html">Paquetes </a>
+<a href="Paquete.html">Paquetes</a>
 <a href="Portafolio.html">Portafolio</a>
 <a href="Testimonios.html">Testimonios</a>
 <a href="Contacto.html">Contacto</a>
 </nav>
-</header>
 
+</header>
 
 <!-- 🚀 CONTACTO -->
 <section class="show">
 
-<h2 style="text-align:center;">Hablemos de tu proyecto</h2>
+<h2 style="text-align:center;">
+Hablemos de tu proyecto
+</h2>
 
 <p class="subtext" style="text-align:center; margin:auto;">
 Cuéntanos tu idea y creemos juntos una experiencia digital moderna,
-impactante y profesional.
+elegante y profesional.
 </p>
 
-<!-- CARD CONTACTO -->
+<!-- CARD -->
 <div class="card"
 style="
-max-width:700px;
+max-width:750px;
 margin:50px auto 0 auto;
-padding:40px;
+padding:45px;
 position:relative;
 overflow:hidden;
 ">
@@ -56,13 +68,13 @@ overflow:hidden;
 <!-- GLOW -->
 <div style="
 position:absolute;
-width:250px;
-height:250px;
+width:260px;
+height:260px;
 background:#00d4ff;
 filter:blur(120px);
-opacity:.12;
-top:-80px;
-right:-80px;
+opacity:.10;
+top:-90px;
+right:-90px;
 z-index:0;
 "></div>
 
@@ -105,7 +117,7 @@ class="btn"
 type="submit"
 style="
 width:100%;
-margin-top:15px;
+margin-top:18px;
 font-weight:600;
 font-size:1rem;
 "
@@ -126,12 +138,18 @@ Enviar mensaje 🚀
 
 <script>
 
-/* MENU MOBILE */
+/* =========================
+   MENU MOBILE
+========================= */
+
 function toggleMenu(){
 document.getElementById("nav").classList.toggle("active");
 }
 
-/* 🌌 ESTRELLAS */
+/* =========================
+   ESTRELLAS
+========================= */
+
 const canvas = document.getElementById('stars');
 const ctx = canvas.getContext('2d');
 
@@ -140,12 +158,12 @@ canvas.height = window.innerHeight;
 
 let stars = [];
 
-for(let i=0;i<120;i++){
+for(let i = 0; i < 120; i++){
 
 stars.push({
-x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-s:Math.random()*2
+x: Math.random() * canvas.width,
+y: Math.random() * canvas.height,
+s: Math.random() * 2
 });
 
 }
@@ -154,11 +172,11 @@ function animateStars(){
 
 ctx.clearRect(0,0,canvas.width,canvas.height);
 
-ctx.fillStyle="white";
+ctx.fillStyle = "white";
 
 stars.forEach(star=>{
 
-ctx.fillRect(star.x,star.y,star.s,star.s);
+ctx.fillRect(star.x, star.y, star.s, star.s);
 
 star.y += 0.2;
 
@@ -172,9 +190,14 @@ requestAnimationFrame(animateStars);
 
 }
 
+canvas.style.opacity = 1;
+
 animateStars();
 
-/* RESPONSIVE */
+/* =========================
+   RESPONSIVE
+========================= */
+
 window.addEventListener('resize',()=>{
 
 canvas.width = window.innerWidth;
