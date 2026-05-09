@@ -1,123 +1,155 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AstroCode Studio</title>
 
+<title>Paquetes | AstroCode Studio</title>
+
+<!-- FAVICON -->
 <link rel="icon" type="image/png" href="logo.png">
+
+<!-- FUENTES -->
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-<link rel="Stylesheet" href="Styles.css">
-    
+<!-- CSS -->
+<link rel="stylesheet" href="Styles.css">
+
 </head>
 
 <body>
 
-<div id="loader"><img src="logo.png"></div>
+<!-- 🌌 ESTRELLAS -->
 <canvas id="stars"></canvas>
 
+<!-- HEADER -->
 <header>
-<div class="logo">AstroCode | Studio </div>
+
+<div class="logo">AstroCode | Studio</div>
+
 <div class="menu-toggle" onclick="toggleMenu()">☰</div>
 
 <nav id="nav">
 <a href="index.html">Inicio</a>
 <a href="Nosotros.html">Nosotros</a>
 <a href="Servicios.html">Servicios</a>
-<a href="Paquete.html">Paquetes </a>
+<a href="Paquete.html">Paquetes</a>
 <a href="Portafolio.html">Portafolio</a>
 <a href="Testimonios.html">Testimonios</a>
 <a href="Contacto.html">Contacto</a>
 </nav>
+
 </header>
 
 <!-- 🚀 PAQUETES -->
 <section class="packages show">
 
-  <h2>Nuestros Paquetes</h2>
+<h2>Nuestros Paquetes</h2>
 
-  <div class="grid">
+<p class="subtext" style="text-align:center; margin:auto;">
+Soluciones diseñadas para llevar tu marca a otro nivel digital.
+</p>
 
-    <!-- 🔹 BASICO -->
-    <div class="card package-card">
-      <div class="card-content">
+<div class="grid">
 
-        <h3>Básico</h3>
+<!-- 🔹 BASICO -->
+<div class="card package-card">
 
-        <p class="package-price">$1600 - $2300</p>
+<div class="card-content">
 
-        <ul class="package-list">
-          <li>✔ Sitio web profesional</li>
-          <li>✔ Diseño moderno</li>
-          <li>✔ Hasta 3 secciones</li>
-          <li>✔ Optimización básica</li>
-          <li>✔ Adaptado a móviles</li>
-          <li>✔ Soporte incluido</li>
-          <li>✔ Tiempo de entrega estándar</li>
-        </ul>
+<h3>Básico</h3>
 
-        <button class="btn package-btn" onclick="goContact()">
-          Elegir plan
-        </button>
+<p class="package-price">$1600 - $2300</p>
 
-      </div>
-    </div>
+<ul class="package-list">
 
-    <!-- 🔥 PRO -->
-    <div class="card package-card package-pro">
+<li>✔ Sitio web profesional</li>
+<li>✔ Diseño moderno</li>
+<li>✔ Hasta 3 secciones</li>
+<li>✔ Optimización básica</li>
+<li>✔ Adaptado a móviles</li>
+<li>✔ Soporte incluido</li>
+<li>✔ Tiempo de entrega estándar</li>
 
-      <div class="package-badge">RECOMENDADO</div>
+</ul>
 
-      <div class="card-content">
+<button class="btn package-btn" onclick="goContact()">
+Elegir plan
+</button>
 
-        <h3>Pro</h3>
+</div>
+</div>
 
-        <p class="package-price">$2500 - $4000</p>
+<!-- 🔥 PRO -->
+<div class="card package-card package-pro">
 
-        <ul class="package-list">
-          <li>✔ Todo lo del plan básico</li>
-          <li>🔥 Diseño premium + animaciones</li>
-          <li>🔥 Experiencia tipo Apple</li>
-          <li>🔥 SEO avanzado</li>
-          <li>🔥 Estrategia de marketing digital</li>
-          <li>🔥 Sesión de fotos profesional</li>
-          <li>🔥 Video promocional</li>
-          <li>🔥 Contenido para redes sociales</li>
-          <li>🔥 Integraciones completas</li>
-          <li>🔥 Soporte prioritario 24/7</li>
-          <li>🔥 Entrega rápida</li>
-          <li>🔥 Escalabilidad futura</li>
-        </ul>
+<div class="package-badge">
+RECOMENDADO
+</div>
 
-        <button class="btn package-btn" onclick="goContact()">
-          Quiero este 🚀
-        </button>
+<div class="card-content">
 
-      </div>
-    </div>
+<h3>Pro</h3>
 
-  </div>
+<p class="package-price">$2500 - $4000</p>
+
+<ul class="package-list">
+
+<li>✔ Todo lo del plan básico</li>
+<li>🔥 Diseño premium + animaciones</li>
+<li>🔥 Experiencia tipo Apple</li>
+<li>🔥 SEO avanzado</li>
+<li>🔥 Estrategia de marketing digital</li>
+<li>🔥 Sesión de fotos profesional</li>
+<li>🔥 Video promocional</li>
+<li>🔥 Contenido para redes sociales</li>
+<li>🔥 Integraciones completas</li>
+<li>🔥 Soporte prioritario 24/7</li>
+<li>🔥 Entrega rápida</li>
+<li>🔥 Escalabilidad futura</li>
+
+</ul>
+
+<button class="btn package-btn" onclick="goContact()">
+Quiero este 🚀
+</button>
+
+</div>
+</div>
+
+</div>
 
 </section>
 
+<!-- FOOTER -->
 <footer>
 © 2026 AstroCode Studio — Todos los derechos reservados
 </footer>
 
 <script>
 
-/* MENU */
+/* =========================
+   MENU MOBILE
+========================= */
+
 function toggleMenu(){
-  document.getElementById("nav").classList.toggle("active");
+document.getElementById("nav").classList.toggle("active");
 }
 
-/* REDIRECCIÓN */
+/* =========================
+   REDIRECCIÓN
+========================= */
+
 function goContact(){
-  window.location.href="index.html#contacto";
+window.location.href = "Contacto.html";
 }
 
-/* 🌌 ESTRELLAS */
+/* =========================
+   ESTRELLAS
+========================= */
+
 const canvas = document.getElementById('stars');
 const ctx = canvas.getContext('2d');
 
@@ -126,36 +158,51 @@ canvas.height = window.innerHeight;
 
 let stars = [];
 
-for(let i=0;i<150;i++){
-  stars.push({
-    x:Math.random()*canvas.width,
-    y:Math.random()*canvas.height,
-    s:Math.random()*2
-  });
+for(let i = 0; i < 150; i++){
+
+stars.push({
+x: Math.random() * canvas.width,
+y: Math.random() * canvas.height,
+s: Math.random() * 2
+});
+
 }
 
 function animateStars(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  ctx.fillStyle="white";
 
-  stars.forEach(star=>{
-    ctx.fillRect(star.x,star.y,star.s,star.s);
-    star.y += 0.2;
-    if(star.y > canvas.height) star.y = 0;
-  });
+ctx.clearRect(0,0,canvas.width,canvas.height);
 
-  requestAnimationFrame(animateStars);
+ctx.fillStyle = "white";
+
+stars.forEach(star=>{
+
+ctx.fillRect(star.x, star.y, star.s, star.s);
+
+star.y += 0.2;
+
+if(star.y > canvas.height){
+star.y = 0;
 }
 
-setTimeout(()=>{
-  canvas.style.opacity = 1;
-  animateStars();
-},800);
+});
 
-/* RESPONSIVE CANVAS */
+requestAnimationFrame(animateStars);
+
+}
+
+canvas.style.opacity = 1;
+
+animateStars();
+
+/* =========================
+   RESPONSIVE CANVAS
+========================= */
+
 window.addEventListener('resize',()=>{
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
 });
 
 </script>
