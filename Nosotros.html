@@ -1,90 +1,120 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AstroCode Studio</title>
 
+<title>Nosotros | AstroCode Studio</title>
+
+<!-- FAVICON -->
 <link rel="icon" type="image/png" href="logo.png">
+
+<!-- FUENTES -->
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-<link rel="Stylesheet" href="Styles.css">
-    
+<!-- CSS -->
+<link rel="stylesheet" href="Styles.css">
+
 </head>
 
 <body>
 
-<div id="loader"><img src="logo.png"></div>
+<!-- 🌌 ESTRELLAS -->
 <canvas id="stars"></canvas>
 
+<!-- HEADER -->
 <header>
-<div class="logo">AstroCode | Studio </div>
+
+<div class="logo">AstroCode | Studio</div>
+
 <div class="menu-toggle" onclick="toggleMenu()">☰</div>
 
 <nav id="nav">
 <a href="index.html">Inicio</a>
 <a href="Nosotros.html">Nosotros</a>
 <a href="Servicios.html">Servicios</a>
-<a href="Paquete.html">Paquetes </a>
+<a href="Paquete.html">Paquetes</a>
 <a href="Portafolio.html">Portafolio</a>
 <a href="Testimonios.html">Testimonios</a>
 <a href="Contacto.html">Contacto</a>
 </nav>
+
 </header>
 
-<!-- CONTENIDO -->
+<!-- 🚀 NOSOTROS -->
 <section class="show">
 
-  <h2 style="text-align:center;">Nosotros</h2>
+<h2 style="text-align:center;">Nosotros</h2>
 
-  <p class="subtext" style="text-align:center; margin:auto;">
-    Creamos experiencias digitales que conectan marcas con personas, combinando creatividad,
-    tecnología y estrategia para generar impacto real.
-  </p>
+<p class="subtext" style="text-align:center; margin:auto;">
+Creamos experiencias digitales modernas, elegantes y estratégicas
+para transformar negocios en marcas memorables.
+</p>
 
-  <div class="grid">
+<div class="grid">
 
-    <!-- HISTORIA -->
-    <div class="card">
-      <h3>Nuestra Historia</h3>
-      <p>
-        AstroCode Studio nació con una visión clara: llevar los negocios al siguiente nivel digital.
-        No solo desarrollamos sitios web, construimos presencia, identidad y resultados.
-        Cada proyecto es una oportunidad para innovar y marcar la diferencia.
-      </p>
-    </div>
+<!-- HISTORIA -->
+<div class="card">
 
-    <!-- FUNDADOR -->
-    <div class="card">
-      <h3>Fundador</h3>
-      <p>
-        <strong>Tu Nombre</strong><br>
-        Desarrollador & Diseñador Digital
-      </p>
+<h3>Nuestra Historia</h3>
 
-      <p style="margin-top:10px; color:#aaa;">
-        Apasionado por la tecnología, el diseño y la creación de experiencias digitales únicas.
-        AstroCode representa la combinación de visión, creatividad y ejecución.
-      </p>
-    </div>
+<p>
+AstroCode Studio nació con una misión clara:
+crear experiencias digitales de alto impacto que
+combinen diseño, innovación y estrategia.
+</p>
 
-  </div>
+<p style="margin-top:15px; color:#aaa;">
+Cada proyecto representa una oportunidad para
+llevar una marca al siguiente nivel,
+fusionando creatividad visual con tecnología moderna.
+</p>
+
+</div>
+
+<!-- FUNDADOR -->
+<div class="card">
+
+<h3>Fundador</h3>
+
+<p>
+<strong>Juan Manuel Martinez Uc</strong><br>
+Desarrollador & Diseñador Digital
+</p>
+
+<p style="margin-top:15px; color:#aaa;">
+Apasionado por el diseño futurista,
+las experiencias premium y la construcción
+de marcas con identidad propia.
+</p>
+
+</div>
+
+</div>
 
 </section>
 
 <!-- FOOTER -->
 <footer>
-  © 2026 AstroCode Studio — Todos los derechos reservados
+© 2026 AstroCode Studio — Todos los derechos reservados
 </footer>
 
 <script>
 
-/* MENU MOBILE */
+/* =========================
+   MENU MOBILE
+========================= */
+
 function toggleMenu(){
-  document.getElementById("nav").classList.toggle("active");
+document.getElementById("nav").classList.toggle("active");
 }
 
-/* 🌌 ESTRELLAS */
+/* =========================
+   ESTRELLAS
+========================= */
+
 const canvas = document.getElementById('stars');
 const ctx = canvas.getContext('2d');
 
@@ -93,37 +123,51 @@ canvas.height = window.innerHeight;
 
 let stars = [];
 
-for(let i=0;i<120;i++){
-  stars.push({
-    x:Math.random()*canvas.width,
-    y:Math.random()*canvas.height,
-    s:Math.random()*2
-  });
+for(let i = 0; i < 120; i++){
+
+stars.push({
+x: Math.random() * canvas.width,
+y: Math.random() * canvas.height,
+s: Math.random() * 2
+});
+
 }
 
 function animateStars(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
 
-  ctx.fillStyle="white";
+ctx.clearRect(0,0,canvas.width,canvas.height);
 
-  stars.forEach(star=>{
-    ctx.fillRect(star.x,star.y,star.s,star.s);
-    star.y += 0.2;
+ctx.fillStyle = "white";
 
-    if(star.y > canvas.height){
-      star.y = 0;
-    }
-  });
+stars.forEach(star=>{
 
-  requestAnimationFrame(animateStars);
+ctx.fillRect(star.x, star.y, star.s, star.s);
+
+star.y += 0.2;
+
+if(star.y > canvas.height){
+star.y = 0;
 }
+
+});
+
+requestAnimationFrame(animateStars);
+
+}
+
+canvas.style.opacity = 1;
 
 animateStars();
 
-/* RESPONSIVE */
+/* =========================
+   RESPONSIVE
+========================= */
+
 window.addEventListener('resize',()=>{
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
 });
 
 </script>
