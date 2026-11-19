@@ -1,0 +1,30 @@
+ASTROCODE STUDIO - QUÉ CAMBIÓ Y QUÉ TIENES QUE COMPLETAR
+==========================================================
+
+1) PON TU WHATSAPP (lo más importante)
+   Abre config.js y cambia  whatsapp: "52XXXXXXXXXX"  por tu número:
+   52 + tus 10 dígitos, sin espacios ni signos. Ejemplo: "529831234567".
+   Mientras tenga las X, el botón flotante no aparece y los botones
+   "Cotizar por WhatsApp" mandan a la página de Contacto.
+
+2) REVISA LOS PRECIOS (Paquete.html)
+   Son una propuesta mía: Web Esencial $2,500, Web + WhatsApp Automático
+   $4,500 y Crecimiento Mensual $2,500/mes. Cámbialos si quieres.
+   También revisa la política de pago (50% anticipo) en Paquete.html e index.html.
+
+3) PORTAFOLIO (Portafolio.html)
+   Sube capturas reales a la carpeta y sigue el comentario dentro del archivo
+   para reemplazar el recuadro de color por tu imagen.
+
+4) TESTIMONIOS (Testimonios.html)
+   Se quitaron los falsos. Dentro del archivo hay un bloque comentado para
+   pegar testimonios reales cuando los tengas.
+
+5) SUBIR A VERCEL
+   Sube todo el contenido de esta carpeta (no la carpeta en sí) a tu repo.
+
+NOTAS
+- logo.png (1.5 MB) ya no se usa en las páginas; se usa logo-512.png (más ligero).
+  Puedes borrar logo.png si quieres.
+- Se agregaron robots.txt y sitemap.xml para Google.
+- Crea tu ficha en Google Business Profile y sube el sitemap en Google Search Console.
